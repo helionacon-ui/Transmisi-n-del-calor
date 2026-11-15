@@ -61,6 +61,10 @@
 <li>Confundir eficiencia y efectividad. Una aleta puede tener \(\eta_f=0{,}95\) y no servir de nada (\(\varepsilon_f\approx1\)) si es demasiado corta.</li>
 <li>Aplicar \(\eta_0\) al área de las aletas en vez de al <b>área total</b> (aletas más pared desnuda).</li>
 </ul></div>
+<h3 id="t3-pared-paso">Pared compuesta, paso a paso</h3>
+<p>Cuando hay varias capas en serie, la analogía eléctrica convierte el problema en un circuito de resistencias térmicas: se calcula cada R, se suman y el flujo sale de dividir la diferencia total de temperatura entre la suma.</p>
+<figure class="fig"><p class="ft">Figura interactiva · pared de ladrillo y aislante en serie</p><div data-sim="paredPaso"></div><figcaption>Sube el paso: se calculan R₁ y R₂, se suman, se obtiene q y, con él, la temperatura de la interfaz.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Sumar temperaturas o flujos en lugar de resistencias.</li><li>Olvidar las unidades: L en metros, k en W/m·K y A en m².</li><li>Creer que la capa más delgada tiene siempre la menor resistencia: depende de k.</li></ul></div>
 <h3 id="t3-problema">Problema resuelto</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una pared de <b>horno</b> está formada por 12 cm de ladrillo refractario (\(k=1{,}2\) W/m·K), 5 cm de aislante (\(k=0{,}05\) W/m·K) y 0,5 cm de chapa de acero (\(k=45\) W/m·K). Dentro hay gases a <b>800 °C</b> con \(h_i=30\) W/m²·K y fuera aire a <b>25 °C</b> con \(h_e=12\) W/m²·K. Calcula, por m² de pared, el flujo de calor y la temperatura de la chapa exterior.</p></div>
 <details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Resistencias por m²</b> (\(A=1\) m²):</p>

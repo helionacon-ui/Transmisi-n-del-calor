@@ -678,5 +678,55 @@ SIMS.radiocritico=el=>build(el,{w:680,h:258,
   ${ri<rcr?'Como el radio del conductor es <b>menor</b> que el crítico, las primeras capas de aislante aumentan la pérdida: el área exterior crece más deprisa de lo que crece la resistencia.':'Como el radio del conductor <b>supera</b> el crítico, cualquier espesor de aislante reduce la pérdida desde el primer milímetro.'}
   <span class="hint">Esto no es una curiosidad académica: es la razón por la que el aislante de un cable eléctrico fino ayuda a disiparlo mejor, y por la que en tuberías pequeñas hay que comprobar el radio crítico antes de decidir el espesor.</span>`);}});
 
+/* ---- Pared plana compuesta en serie, paso a paso: R = L/(kA), q = ΔT/ΣR ---- */
+SIMS.paredPaso=el=>build(el,{w:660,h:380,
+ sliders:[{k:'paso',v:0,min:0,max:6,step:1,l:'paso de la resolución (0 = problema)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;const g=a.g;
+  const xA=60,xB=240,xC=330,yT=90,yB=250;      // 900 px por metro: 0,20 m → 180 px; 0,10 m → 90 px
+  g.save();g.globalAlpha=0.22;
+  g.fillStyle=C.f;g.fillRect(xA,yT,xB-xA,yB-yT);
+  g.fillStyle=C.c;g.fillRect(xB,yT,xC-xB,yB-yT);
+  g.restore();
+  g.lineWidth=2;g.strokeStyle=C.f;g.strokeRect(xA,yT,xB-xA,yB-yT);
+  g.strokeStyle=C.c;g.strokeRect(xB,yT,xC-xB,yB-yT);
+  a.txt('ladrillo',(xA+xB)/2,(yT+yB)/2-6,C.f,12,'center');
+  a.txt('k = 0,8',(xA+xB)/2,(yT+yB)/2+10,C.f,12,'center');
+  a.txt('aislante',(xB+xC)/2,(yT+yB)/2-6,C.c,11,'center');
+  a.txt('k = 0,05',(xB+xC)/2,(yT+yB)/2+10,C.c,11,'center');
+  // temperaturas de las superficies
+  a.txt('T₁ = 20 °C',xA,yT-14,C.text,12,'left');
+  a.txt('T₂ = −7 °C',xC,yT-14,C.text,12,'right');
+  if(p>=5){a.txt('T_int = 17 °C',xB,yB+18,C.a,12,'center');}
+  // flujo de calor
+  if(p>=4){
+    a.arrow(xA+10,yB+44,xC-10,yB+44,C.d,2.6);
+    a.txt('q = 12 W',(xA+xC)/2,yB+62,C.d,13,'center');
+  }
+  // desarrollo a la derecha
+  a.txt('Datos: A = 1 m², T₁ = 20 °C, T₂ = −7 °C',360,50,C.muted,12,'left');
+  if(p>=1)a.txt('R = L/(k·A), y en serie las resistencias se suman',360,90,C.text,12,'left');
+  if(p>=2)a.txt('R₁ = 0,20/(0,8·1) = 0,25 K/W',360,120,C.text,13,'left');
+  if(p>=3){
+    a.txt('R₂ = 0,10/(0,05·1) = 2,00 K/W',360,146,C.text,13,'left');
+    a.txt('R_tot = 2,25 K/W',360,168,C.text,13,'left');
+  }
+  if(p>=4)a.txt('q = ΔT/R_tot = 27/2,25 = 12 W',360,200,C.d,14,'left');
+  if(p>=5)a.txt('ΔT₁ = q·R₁ = 3 K  →  T_int = 17 °C',360,236,C.c,13,'left');
+  if(p>=6){
+    a.txt('ΔT₂ = q·R₂ = 24 K  →  17 − 24 = −7 °C ✓',360,270,C.c,12,'left');
+    a.txt('El aislante absorbe casi toda la caída',360,300,C.muted,12,'left');
+  }
+  const T=[
+   'Pared plana compuesta de dos capas en serie, con área A = 1 m². Capa 1: ladrillo de 0,20 m con k = 0,8 W/m·K. Capa 2: aislante de 0,10 m con k = 0,05 W/m·K. Superficies a T₁ = 20 °C y T₂ = −7 °C. Se pide el flujo de calor y la temperatura de la interfaz.',
+   'La conducción permanente en una pared plana se modela como un circuito eléctrico: cada capa es una resistencia térmica R = L/(kA). Como el calor pasa por una capa y después por la otra, las resistencias están en serie y se suman.',
+   'R₁ = L₁/(k₁A) = 0,20/(0,8 · 1) = 0,25 K/W. La capa de ladrillo opone poca resistencia porque conduce bien.',
+   'R₂ = L₂/(k₂A) = 0,10/(0,05 · 1) = 2,00 K/W. El aislante es una capa más delgada, pero conduce tan mal que su resistencia es 8 veces mayor. Con R_tot = 0,25 + 2,00 = 2,25 K/W, ya se tiene el circuito completo.',
+   'Flujo de calor: q = ΔT/R_tot = (20 − (−7))/2,25 = 27/2,25 = 12 W. Es el mismo en las dos capas, porque en régimen permanente no se acumula energía en la pared.',
+   'Temperatura de la interfaz: en la capa 1 la caída es ΔT₁ = q·R₁ = 12 · 0,25 = 3 K. Entonces T_int = 20 − 3 = 17 °C.',
+   'Comprobación: en la capa 2 la caída es ΔT₂ = 12 · 2 = 24 K, y 17 − 24 = −7 °C, que coincide con T₂. Casi toda la diferencia de temperatura cae en el aislante.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll("[data-sim]").forEach(function(el){var k=el.getAttribute("data-sim");if(SIMS[k]){try{SIMS[k](el);}catch(e){console.error("sim "+k,e);}}else console.warn("sim no encontrada: "+k);});
 })();
