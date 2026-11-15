@@ -728,5 +728,29 @@ SIMS.paredPaso=el=>build(el,{w:660,h:380,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+
+
+
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 lmtdPaso ---- */
+SIMS.lmtdPaso=el=>SIMS.__paso(el,{"w":660,"h":275,"q":"Calcula el área de un intercambiador a contracorriente que transfiere 20 kW con los extremos a 100/60 °C (caliente) y 20/50 °C (frío). Sube el paso.","base":[["l",380,240,610,240,1.5],["l",380,240,380,90,1.5],["t","longitud →",610,256,11,"right"],["t","100",374,107.63636363636363,11,"right"],["t","20",374,216.72727272727272,11,"right"]],"steps":[{"text":"Intercambiador en <b>contracorriente</b>: el fluido caliente entra a <b>100 °C</b> y sale a <b>60 °C</b>; el frío entra a <b>20 °C</b> y sale a <b>50 °C</b>. Se transfieren <b>20 kW</b> con U = 500 W/m²K. ¿Qué área hace falta?","add":[]},{"text":"En contracorriente se comparan los extremos que están frente a frente: en un extremo ΔT₁ = T<sub>h,ent</sub> − T<sub>c,sal</sub> = 100 − 50 = <b>50 K</b>.","add":[["t","ΔT₁ = 100 − 50 = 50 K",40,70,15,"left"],["l",380,103.63636363636363,610,158.1818181818182,2.5]]},{"text":"En el otro extremo ΔT₂ = T<sub>h,sal</sub> − T<sub>c,ent</sub> = 60 − 20 = <b>40 K</b>.","add":[["t","ΔT₂ = 60 − 20 = 40 K",40,104,15,"left"],["l",380,171.8181818181818,610,212.72727272727272,2.5]]},{"text":"La diferencia de temperatura no es constante: se usa la <b>media logarítmica</b> <b>ΔT<sub>ml</sub> = (ΔT₁ − ΔT₂)/ln(ΔT₁/ΔT₂)</b>.","add":[["t","ΔT_ml = (ΔT₁ − ΔT₂)/ln(ΔT₁/ΔT₂)",40,140,14,"left"]]},{"text":"<b>ΔT<sub>ml</sub> = (50 − 40)/ln(50/40) = 10/0,2231 = 44,81 K</b>. Queda entre ΔT₂ y ΔT₁ y muy cerca de su media aritmética (45 K) porque son parecidas.","add":[["t","ΔT_ml = 10/ln(1,25) = 44,81 K",40,174,15,"left"]]},{"text":"Ecuación de diseño: <b>Q = U·A·ΔT<sub>ml</sub></b> ⇒ <b>A = Q/(U·ΔT<sub>ml</sub>) = 20000/(500·44,81) = 0,89 m²</b>.","add":[["t","A = Q/(U ΔT_ml) = 0,89 m²",40,208,16,"left"]]},{"text":"En <b>paralelo</b> sería ΔT₁ = 80 y ΔT₂ = 10 (60 − 50): ΔT<sub>ml</sub> = 70/ln 8 = 33,7 K y haría falta un área de 1,19 m²: casi el doble. Por eso la contracorriente es más eficaz.","add":[["t","paralelo: A = 1,19 m²",40,242,14,"left"]]}]});
+/* ---- fin paso2 lmtdPaso ---- */
 document.querySelectorAll("[data-sim]").forEach(function(el){var k=el.getAttribute("data-sim");if(SIMS[k]){try{SIMS[k](el);}catch(e){console.error("sim "+k,e);}}else console.warn("sim no encontrada: "+k);});
 })();
