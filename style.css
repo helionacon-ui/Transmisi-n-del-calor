@@ -518,3 +518,7 @@ figure.ill .ill-t{font:700 12px/1.2 system-ui,sans-serif;letter-spacing:.06em;te
 figure.ill svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
 figure.ill figcaption{margin:10px 2px 0;font-size:14px;line-height:1.5;color:var(--muted)}
 .ill-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+
+/* --- ampliación --- */
+details.paso>summary{overflow-x:auto;overflow-y:hidden}
+.prob .enun mjx-container[display="true"],.prob .inner mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
