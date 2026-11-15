@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T5 Conducción en régimen transitorio · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 5, Conducción en régimen transitorio">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Conducción</span><span class="sep">›</span><span>T5 · Conducción en régimen transitorio</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)" class="on" aria-current="page">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Conducción · Tema 5</p><h2 id="t5">Conducción en régimen transitorio</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> decidir si vale el modelo de sistemas concentrados con el número de Biot, aplicar la solución de un término y leer los gráficos de Heisler.</p><ul>
+<li>El <b>número de Biot</b> compara la resistencia a conducir dentro del cuerpo con la resistencia a convectar en la superficie: \(Bi=hL_c/k\).</li>
+<li>Si \(Bi\le0{,}1\), el cuerpo está prácticamente <b>a temperatura uniforme</b> en cada instante y basta con el modelo de <b>sistemas concentrados</b>: una exponencial y se acabó.</li>
+<li>Si \(Bi>0{,}1\), la temperatura <b>varía dentro</b> del cuerpo y hay que usar la solución en serie, que para \(\tau=Fo>0{,}2\) se reduce al <b>primer término</b>.</li>
+<li>El <b>número de Fourier</b> \(Fo=\alpha t/L_c^2\) es el tiempo adimensional: cuánto ha avanzado el proceso.</li>
+<li>Los <b>gráficos de Heisler</b> dan lo mismo que la solución de un término, pero leyéndolos: temperatura en el centro, en cualquier punto y calor transferido.</li>
+<li>Cuidado con la <b>longitud característica</b>: para sistemas concentrados es \(V/A_s\), pero en la solución de un término y en Heisler es el <b>semiespesor</b> de la pared o el <b>radio</b> del cilindro o la esfera.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Bi</td><td>número de Biot</td><td class="u">hL_c/k (k del sólido)</td></tr><tr><td class="sym">Fo</td><td>número de Fourier</td><td class="u">αt/L_c², tiempo adimensional</td></tr><tr><td class="sym">L_c</td><td>longitud característica</td><td class="u">V/A_s para Biot</td></tr><tr><td class="sym">b</td><td>constante de enfriamiento</td><td class="u">hA_s/(ρVc_p), 1/s</td></tr><tr><td class="sym">τ</td><td>constante de tiempo</td><td class="u">1/b, s</td></tr><tr><td class="sym">A₁, λ₁</td><td>coeficientes de la serie</td><td class="u">tabla del formulario</td></tr><tr><td class="sym">J₀</td><td>función de Bessel</td><td class="u">cilindro</td></tr><tr><td class="sym">erfc</td><td>función error complementaria</td><td class="u">sólido semiinfinito</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - numero de Biot y curva de enfriamiento</p><div data-sim="biot"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t5-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Biot:</b> \(Bi=\dfrac{hL_c}{k}\), con \(L_c=V/A_s\) para el criterio (pared \(L\), cilindro \(r_0/2\), esfera \(r_0/3\)).</li>
+<li><b>Sistemas concentrados:</b> \(\dfrac{T(t)-T_\infty}{T_i-T_\infty}=e^{-bt}\), con \(b=\dfrac{hA_s}{\rho Vc_p}\ \left[\mathrm{s^{-1}}\right]\) y constante de tiempo \(\tau=1/b\).</li>
+<li><b>Calor intercambiado:</b> \(Q(t)=\rho Vc_p(T_i-T(t))\); máximo \(Q_{max}=\rho Vc_p(T_i-T_\infty)\).</li>
+<li><b>Fourier:</b> \(Fo=\tau=\dfrac{\alpha t}{L_c^2}\), con \(\alpha=k/(\rho c_p)\).</li>
+<li><b>Solución de un término</b> (válida para \(\tau>0{,}2\)):
+ pared \(\theta=A_1e^{-\lambda_1^2\tau}\cos(\lambda_1x/L)\) · cilindro \(\theta=A_1e^{-\lambda_1^2\tau}J_0(\lambda_1r/r_0)\) · esfera \(\theta=A_1e^{-\lambda_1^2\tau}\dfrac{\sin(\lambda_1r/r_0)}{\lambda_1r/r_0}\).</li>
+<li>\(A_1\) y \(\lambda_1\) se leen en la <b>tabla 2</b> del formulario en función de \(Bi=hL/k\) (con \(L\) el semiespesor o \(r_0\)).</li>
+<li><b>Sólido semiinfinito:</b> \(\dfrac{T(x,t)-T_i}{T_s-T_i}=\mathrm{erfc}\!\left(\dfrac{x}{2\sqrt{\alpha t}}\right)\); la profundidad de penetración crece con \(\sqrt{\alpha t}\).</li>
+</ul></div>
+<h3 id="t5-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Calcula \(L_c=V/A_s\) y el <b>número de Biot</b>. Esa es siempre la primera decisión.</li>
+<li>Si \(Bi\le0{,}1\): aplica sistemas concentrados, calcula \(b\) y despeja lo que pidan (temperatura, tiempo o calor).</li>
+<li>Si \(Bi>0{,}1\): cambia a la \(L_c\) geométrica (semiespesor o radio), calcula \(Bi\) y \(\tau\) con ella.</li>
+<li>Comprueba que \(\tau>0{,}2\). Si lo es, usa la <b>solución de un término</b> con \(A_1\) y \(\lambda_1\) de tabla; si no, hace falta la serie completa o Heisler.</li>
+<li>Para el calor, usa el gráfico correspondiente de \(Q/Q_{max}\) o la expresión del formulario.</li>
+<li>Comprueba el <b>sentido físico</b>: la temperatura debe tender a \(T_\infty\) y nunca sobrepasarla.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Mezclar las dos longitudes características.</b> Para decidir con Biot se usa \(V/A_s\); para la solución de un término y Heisler, el semiespesor o el radio. Es el error que más puntos cuesta.</li>
+<li>Aplicar sistemas concentrados sin comprobar \(Bi\le0{,}1\).</li>
+<li>Usar la solución de un término con \(\tau<0{,}2\), donde no es válida.</li>
+<li>Olvidar que en una pared de espesor \(2L\) con convección por las dos caras, \(L\) es el <b>semiespesor</b>.</li>
+<li>Confundir \(\alpha\) (difusividad, m²/s) con \(k\) (conductividad, W/m·K).</li>
+<li>Tomar \(A_s\) sin contar todas las caras en contacto con el fluido.</li>
+</ul></div>
+<h3 id="t5-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una <b>bola de acero</b> de <b>5 cm</b> de diámetro (\(k=14{,}9\) W/m·K, \(\rho=7900\) kg/m³, \(c_p=477\) J/kg·K) sale de un horno a <b>500 °C</b> y se enfría en aire a <b>25 °C</b> con \(h=120\) W/m²·K. Calcula cuánto tarda en llegar a 100 °C y qué temperatura tiene a los 10 minutos.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. ¿Vale el modelo de sistemas concentrados?</b></p>
+\[L_c=\frac{V}{A_s}=\frac{\frac43\pi r_0^3}{4\pi r_0^2}=\frac{r_0}{3}=\frac{0{,}025}{3}=8{,}33\ \mathrm{mm}\]
+\[Bi=\frac{hL_c}{k}=\frac{120\cdot0{,}00833}{14{,}9}=\mathbf{0{,}067}<0{,}1\ \checkmark\]
+<p>Sí: la bola está prácticamente a temperatura uniforme en cada instante.</p>
+<p><b>2. Constante del proceso:</b></p>
+\[b=\frac{hA_s}{\rho Vc_p}=\frac{h}{\rho c_pL_c}=\frac{120}{7900\cdot477\cdot0{,}00833}=3{,}82\cdot10^{-3}\ \mathrm{s^{-1}}\]
+<p>La constante de tiempo es \(\tau=1/b=\mathbf{262\ s}\): en ese tiempo recorre el 63 % del camino hacia \(T_\infty\).</p>
+<p><b>3. Tiempo para llegar a 100 °C:</b></p>
+\[t=-\frac1b\ln\frac{T-T_\infty}{T_i-T_\infty}=-\frac{1}{3{,}82\cdot10^{-3}}\ln\frac{100-25}{500-25}=\boxed{483\ \mathrm{s}=8{,}1\ \mathrm{min}}\]
+<p><b>4. Temperatura a los 10 minutos:</b></p>
+\[T=25+(500-25)e^{-3{,}82\cdot10^{-3}\cdot600}=\boxed{73{,}0\ ^\circ\mathrm{C}}\]
+<p><b>5. Calor cedido hasta entonces:</b></p>
+\[Q=\rho Vc_p(T_i-T)=7900\cdot6{,}54\cdot10^{-5}\cdot477\,(500-73)=105\ \mathrm{kJ}\]
+<p>de un máximo de \(Q_{max}=117\) kJ: el <b>90 %</b> del proceso ya ha ocurrido.</p>
+<div class="box key"><p><b>Comprobación útil:</b> con \(Bi=hr_0/k=0{,}20\) (la definición de Heisler), las tablas darían \(A_1\approx1{,}06\) y \(\lambda_1\approx0{,}76\), y el resultado apenas cambiaría. Eso confirma que para \(Bi\) pequeño ambos caminos coinciden.</p></div></div></details></div>
+<h3 id="t5-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué compara el número de Biot?</summary><div class="inner"><p>La resistencia a la <b>conducción dentro</b> del cuerpo con la resistencia a la <b>convección en la superficie</b>: \(Bi=hL_c/k\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuándo vale el modelo de sistemas concentrados?</summary><div class="inner"><p>Cuando \(Bi\le0{,}1\): la diferencia de temperatura dentro del cuerpo es despreciable frente a la que hay con el fluido.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué longitud característica se usa en cada caso?</summary><div class="inner"><p>Para el criterio de Biot, \(L_c=V/A_s\). Para la solución de un término y los gráficos de Heisler, el <b>semiespesor</b> de la pared o el <b>radio</b> del cilindro o la esfera.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué significa el número de Fourier?</summary><div class="inner"><p>Es el <b>tiempo adimensional</b>: \(Fo=\alpha t/L_c^2\), la relación entre el calor conducido y el almacenado. Para \(Fo>0{,}2\) basta el primer término de la serie.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué es la constante de tiempo térmica?</summary><div class="inner"><p>\(\tau=1/b=\rho Vc_p/(hA_s)\): el tiempo en el que el cuerpo recorre el <b>63 %</b> del camino hacia la temperatura del fluido. En \(5\tau\) el proceso está prácticamente terminado.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cuándo se usa la solución de sólido semiinfinito?</summary><div class="inner"><p>Cuando el frente térmico <b>aún no ha llegado</b> al otro extremo del cuerpo: terrenos, paredes muy gruesas o tiempos cortos. La penetración crece con \(\sqrt{\alpha t}\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-04.html"><small>← Anterior</small>T4 · Métodos numéricos en conducción</a><a class="nx" href="tema-06.html"><small>Siguiente →</small>T6 · Introducción a la convección: capa límite y números adimensionales</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

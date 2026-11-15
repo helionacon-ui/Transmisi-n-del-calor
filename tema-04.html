@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T4 Métodos numéricos en conducción · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 4, Métodos numéricos en conducción">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Conducción</span><span class="sep">›</span><span>T4 · Métodos numéricos en conducción</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)" class="on" aria-current="page">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">Conducción · Tema 4</p><h2 id="t4">Métodos numéricos en conducción</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> discretizar la ecuación de la conducción por diferencias finitas, escribir la ecuación de cada tipo de nodo y resolver el sistema o avanzar en el tiempo.</p><ul>
+<li>Cuando la geometría o las condiciones de contorno impiden una solución analítica, se divide el dominio en una <b>malla</b> y se resuelve nodo a nodo.</li>
+<li>La ecuación de un nodo sale de un <b>balance de energía</b> en su volumen de control, igual que la ecuación general, pero con diferencias en vez de derivadas.</li>
+<li>En régimen <b>permanente</b> queda un sistema lineal \([A]\{T\}=\{b\}\) que se resuelve de golpe (en MATLAB, <code>T = A\b</code>) o por iteración (Gauss-Seidel).</li>
+<li>En régimen <b>transitorio</b> se avanza paso a paso: el método <b>explícito</b> es sencillo pero tiene un límite de estabilidad en \(\Delta t\); el <b>implícito</b> es siempre estable pero exige resolver un sistema en cada paso.</li>
+<li>Los <b>nodos de contorno</b> (superficie con convección, esquina, simetría, flujo impuesto) tienen su propia ecuación: es donde se pierden los puntos.</li>
+<li>El resultado hay que <b>validarlo</b>: refinar la malla hasta que la solución no cambie, y comprobar el balance global de energía.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Δx</td><td>paso de la malla</td><td class="u">m</td></tr><tr><td class="sym">τ</td><td>parámetro de estabilidad</td><td class="u">αΔt/Δx²</td></tr><tr><td class="sym">T_i^p</td><td>temperatura del nodo i en el paso p</td><td class="u">°C</td></tr><tr><td class="sym">explícito</td><td>método de avance</td><td class="u">τ ≤ 1/2 (1D)</td></tr><tr><td class="sym">implícito</td><td>método de avance</td><td class="u">siempre estable</td></tr><tr><td class="sym">DRC</td><td>independencia de malla</td><td class="u">refinar hasta que no cambie</td></tr><tr><td class="sym">nodo espejo</td><td>contorno adiabático</td><td class="u">vecino reflejado</td></tr><tr><td class="sym">[A]{T}={b}</td><td>sistema lineal</td><td class="u">régimen permanente</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - malla de diferencias finitas resuelta</p><div data-sim="nodal"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t4-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Nodo interior 1D:</b> \(T_{i-1}-2T_i+T_{i+1}+\dfrac{\dot q_g\Delta x^2}{k}=0\).</li>
+<li><b>Nodo interior 2D (malla cuadrada):</b> \(T_{izq}+T_{der}+T_{sup}+T_{inf}-4T_{nodo}+\dfrac{\dot q_g\Delta x^2}{k}=0\).</li>
+<li><b>Nodo de superficie con convección (2D, cara plana):</b> \(2T_{int}+T_{sup}+T_{inf}+\dfrac{2h\Delta x}{k}T_\infty-\left(4+\dfrac{2h\Delta x}{k}\right)T_{nodo}=0\).</li>
+<li><b>Nodo adiabático o de simetría:</b> se trata como interior con el vecino que falta <b>reflejado</b> (vale el mismo valor que el del lado opuesto).</li>
+<li><b>Explícito 1D:</b> \(T_i^{p+1}=\tau\left(T_{i-1}^p+T_{i+1}^p\right)+(1-2\tau)T_i^p\), con \(\tau=\dfrac{\alpha\Delta t}{\Delta x^2}\).</li>
+<li><b>Criterio de estabilidad del explícito:</b> \(\tau\le\dfrac12\) en 1D y \(\tau\le\dfrac14\) en 2D; con convección en el contorno el límite es aún más restrictivo.</li>
+<li><b>Implícito 1D:</b> \(-\tau T_{i-1}^{p+1}+(1+2\tau)T_i^{p+1}-\tau T_{i+1}^{p+1}=T_i^p\); incondicionalmente estable.</li>
+<li><b>Error de truncamiento:</b> \(O(\Delta x^2)\) en el espacio y \(O(\Delta t)\) en el tiempo con Euler explícito o implícito.</li>
+</ul></div>
+<h3 id="t4-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Dibuja la <b>malla</b> y numera los nodos. Elige \(\Delta x\) igual en ambas direcciones si puedes: simplifica mucho.</li>
+<li>Clasifica cada nodo: interior, superficie con convección, esquina, adiabático o de temperatura impuesta.</li>
+<li>Escribe el <b>balance de energía</b> de cada tipo de nodo, con el volumen de control que le corresponde (medio volumen en superficie, un cuarto en esquina).</li>
+<li>Monta el sistema \([A]\{T\}=\{b\}\) y resuélvelo.</li>
+<li>Si es transitorio, elige el método y comprueba la <b>estabilidad</b> antes de lanzar el cálculo.</li>
+<li><b>Valida:</b> refina la malla hasta que el resultado no cambie y comprueba el balance global de calor.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Usar la ecuación del nodo interior <b>en el contorno</b>. El volumen de control es la mitad (o un cuarto en esquina) y aparece el término de convección.</li>
+<li>Olvidar el criterio de <b>estabilidad</b> del método explícito: con \(\tau>1/2\) la solución oscila y diverge, y el resultado carece de sentido físico.</li>
+<li>Confundir \(\Delta x\) con el número de nodos: con \(N\) nodos hay \(N-1\) intervalos.</li>
+<li>No refinar la malla y dar por bueno el primer resultado.</li>
+<li>En simetría, poner el nodo espejo con otra temperatura en vez de la del vecino reflejado.</li>
+<li>Olvidar el término de generación \(\dot q_g\Delta x^2/k\), que es el que más se pierde al copiar la ecuación.</li>
+</ul></div>
+<h3 id="t4-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una barra de <b>acero</b> (\(k=50\) W/m·K, \(\alpha=1{,}4\cdot10^{-5}\) m²/s) de <b>10 cm</b> de longitud está aislada lateralmente. Su extremo izquierdo se mantiene a <b>200 °C</b> y el derecho a <b>50 °C</b>. Discretiza con <b>5 nodos</b>, plantea el sistema y resuélvelo. Después, calcula el paso de tiempo máximo que permitiría un cálculo transitorio explícito con esa malla.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Malla.</b> Con 5 nodos (0 a 4): \(\Delta x=L/4=0{,}025\) m. Los nodos 0 y 4 tienen temperatura impuesta; los nodos 1, 2 y 3 son interiores.</p>
+<p><b>2. Ecuaciones de los nodos interiores</b> (sin generación):</p>
+\[T_{i-1}-2T_i+T_{i+1}=0\ \Rightarrow\ \begin{cases}200-2T_1+T_2=0\\T_1-2T_2+T_3=0\\T_2-2T_3+50=0\end{cases}\]
+<p><b>3. Resolución.</b> El sistema da:</p>
+\[T_1=162{,}5\ ^\circ\mathrm{C},\quad T_2=125{,}0\ ^\circ\mathrm{C},\quad T_3=87{,}5\ ^\circ\mathrm{C}\]
+<p>Es exactamente el <b>perfil lineal</b> analítico, porque en 1D sin generación ni variación de \(k\) la solución exacta es una recta y las diferencias finitas la reproducen sin error.</p>
+<p><b>4. Flujo de calor:</b></p>
+\[\dot q=k\frac{T_0-T_1}{\Delta x}=50\frac{200-162{,}5}{0{,}025}=\boxed{75\ \mathrm{kW/m^2}}\]
+<p><b>5. Paso de tiempo máximo (explícito).</b></p>
+\[\tau=\frac{\alpha\Delta t}{\Delta x^2}\le\frac12\ \Rightarrow\ \Delta t\le\frac{\Delta x^2}{2\alpha}=\frac{0{,}025^2}{2\cdot1{,}4\cdot10^{-5}}=\boxed{22{,}3\ \mathrm{s}}\]
+<div class="box trap"><h4>El precio de refinar</h4><p>Si se duplica el número de intervalos, \(\Delta x\) se divide por 2 y \(\Delta t_{max}\) <b>por 4</b>. Refinar el espacio encarece el tiempo de cálculo mucho más de lo que parece: es el motivo de usar métodos implícitos en transitorios largos.</p></div></div></details></div>
+<h3 id="t4-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿De dónde sale la ecuación de un nodo?</summary><div class="inner"><p>De un <b>balance de energía</b> en su volumen de control: la suma de los calores que llegan de los nodos vecinos más la generación iguala a la acumulación (cero en permanente).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué cambia en un nodo de superficie?</summary><div class="inner"><p>Que su volumen de control es <b>la mitad</b> (un cuarto en esquina) y que aparece el término de convección \(h\Delta x(T_\infty-T_{nodo})/k\).</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuál es el criterio de estabilidad del método explícito?</summary><div class="inner"><p>\(\tau=\alpha\Delta t/\Delta x^2\le1/2\) en 1D y \(\le1/4\) en 2D. Si no se cumple, la solución oscila y diverge.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué ventaja tiene el método implícito?</summary><div class="inner"><p>Que es <b>incondicionalmente estable</b>: admite cualquier \(\Delta t\). A cambio hay que resolver un sistema de ecuaciones en cada paso.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cómo se trata un contorno adiabático?</summary><div class="inner"><p>Con un <b>nodo espejo</b>: se supone que al otro lado hay un vecino con la misma temperatura que el real, lo que anula el gradiente.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se comprueba que la solución numérica es buena?</summary><div class="inner"><p>Refinando la malla hasta que el resultado <b>deja de cambiar</b> (independencia de malla) y comprobando el balance global de energía entre lo que entra y lo que sale.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-03.html"><small>← Anterior</small>T3 · Conducción unidimensional permanente y aletas</a><a class="nx" href="tema-05.html"><small>Siguiente →</small>T5 · Conducción en régimen transitorio</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

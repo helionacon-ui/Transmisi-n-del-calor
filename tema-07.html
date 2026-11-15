@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 Convección forzada en flujo externo · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 7, Convección forzada en flujo externo">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Convección, radiación e intercambiadores</span><span class="sep">›</span><span>T7 · Convección forzada en flujo externo</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)" class="on" aria-current="page">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 7</p><h2 id="t7">Convección forzada en flujo externo</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular el coeficiente de convección sobre placas planas, cilindros, esferas y bancos de tubos, eligiendo la correlación correcta y comprobando su rango.</p><ul>
+<li>En <b>placa plana</b>, el flujo empieza laminar y transiciona hacia \(Re_x\approx5\cdot10^5\). Antes y después se usan correlaciones distintas; si la placa cruza la transición, hay que usar la mixta.</li>
+<li>El coeficiente local \(h_x\) <b>disminuye</b> al avanzar: la capa límite crece y aísla. El valor medio \(\bar h\) de una placa laminar es exactamente <b>el doble</b> del local en el extremo.</li>
+<li>En <b>cilindro en flujo cruzado</b> el fenómeno es muy distinto: hay <b>desprendimiento</b> de la capa límite y una estela. Se usa la correlación de Churchill-Bernstein, válida en todo el rango.</li>
+<li>La longitud característica cambia con la geometría: \(x\) o \(L\) en placa, el <b>diámetro</b> en cilindros y esferas.</li>
+<li>En <b>bancos de tubos</b> lo que importa es la <b>velocidad máxima</b> entre tubos, no la de entrada, y la diferencia de temperaturas es la <b>media logarítmica</b>.</li>
+<li>Para la esfera las propiedades se evalúan a \(T_\infty\) (excepto \(\mu_s\)); para el resto, a la temperatura de película.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Re_x</td><td>Reynolds local</td><td class="u">U x/ν</td></tr><tr><td class="sym">x_cr</td><td>posición de transición</td><td class="u">5·10⁵ ν/U</td></tr><tr><td class="sym">Nu_x</td><td>Nusselt local</td><td class="u">da h_x</td></tr><tr><td class="sym">Nu_L</td><td>Nusselt medio</td><td class="u">da h medio</td></tr><tr><td class="sym">C_f</td><td>coeficiente de fricción</td><td class="u">adimensional</td></tr><tr><td class="sym">D</td><td>diámetro</td><td class="u">longitud característica en cilindros</td></tr><tr><td class="sym">V_max</td><td>velocidad máxima</td><td class="u">bancos de tubos</td></tr><tr><td class="sym">F</td><td>factor de corrección</td><td class="u">menos de 16 filas</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - coeficiente local y medio en placa plana</p><div data-sim="placa"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t7-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Placa laminar</b> (\(Re<5\cdot10^5\)): \(\delta=\dfrac{5x}{Re_x^{1/2}}\) · \(\delta_t=\dfrac{5x}{Pr^{1/3}Re_x^{1/2}}\) · \(Nu_x=0{,}332Pr^{1/3}Re_x^{1/2}\) · \(\overline{Nu}_L=0{,}664Pr^{1/3}Re_L^{1/2}\) · \(C_{f,x}=\dfrac{0{,}664}{Re_x^{1/2}}\).</li>
+<li><b>Placa turbulenta</b> (\(5\cdot10^5<Re<10^7\)): \(\delta=\dfrac{0{,}382x}{Re_x^{1/5}}\) · \(Nu_x=0{,}0296Pr^{1/3}Re_x^{0{,}8}\) · \(\overline{Nu}_L=0{,}037Pr^{1/3}Re_L^{0{,}8}\).</li>
+<li><b>Placa mixta:</b> \(\overline{Nu}_L=\left(0{,}037Re_L^{0{,}8}-871\right)Pr^{1/3}\), para \(0{,}6\le Pr\le60\).</li>
+<li><b>Flujo de calor uniforme en la placa:</b> \(Nu_x=0{,}453Pr^{1/3}Re_x^{1/2}\) (laminar) y \(0{,}0308Pr^{1/3}Re_x^{0{,}8}\) (turbulento).</li>
+<li><b>Cilindro (Churchill-Bernstein):</b> \(Nu=0{,}3+\dfrac{0{,}62Re^{1/2}Pr^{1/3}}{\left[1+(0{,}4/Pr)^{2/3}\right]^{1/4}}\left[1+\left(\dfrac{Re}{282\,000}\right)^{5/8}\right]^{4/5}\), para \(Re\,Pr>0{,}2\).</li>
+<li><b>Esfera (Whitaker):</b> \(Nu=2+\left(0{,}4Re^{1/2}+0{,}06Re^{2/3}\right)Pr^{0{,}4}\left(\dfrac{\mu_\infty}{\mu_s}\right)^{1/4}\), \(3{,}5\le Re\le8\cdot10^4\). Nótese que \(Nu\to2\) en fluido en reposo.</li>
+<li><b>Bancos de tubos:</b> \(V_{max}=\dfrac{S_T}{S_T-D}V\) (alineados) · \(\Delta T_{lm}=\dfrac{(T_s-T_{sal})-(T_s-T_{ent})}{\ln\left[(T_s-T_{sal})/(T_s-T_{ent})\right]}\) · corrección \(Nu_{D,N_L}=F\,Nu_D\) si hay menos de 16 filas.</li>
+</ul></div>
+<h3 id="t7-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Calcula \(T_f=(T_s+T_\infty)/2\) y saca de tabla \(\nu\), \(k\) y \(Pr\) del fluido.</li>
+<li>Calcula \(Re\) con la <b>longitud característica</b> de esa geometría.</li>
+<li>Decide el régimen y localiza, si procede, la <b>posición de transición</b> \(x_{cr}=5\cdot10^5\nu/U_\infty\).</li>
+<li>Elige la correlación y <b>comprueba su rango</b> de \(Re\) y de \(Pr\).</li>
+<li>Calcula \(Nu\), después \(h=Nu\,k/L_c\) y por último \(\dot Q=hA_s(T_s-T_\infty)\).</li>
+<li>Si la temperatura superficial era una incógnita, itera: supón \(T_s\), calcula, actualiza \(T_f\) y repite.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Usar la correlación <b>laminar en toda la placa</b> cuando \(Re_L\) supera \(5\cdot10^5\): hay que usar la mixta.</li>
+<li>Confundir \(Nu_x\) (local) con \(\overline{Nu}_L\) (medio). El factor entre ellos en laminar es exactamente 2.</li>
+<li>En cilindros y esferas, usar \(L\) en vez del <b>diámetro</b>.</li>
+<li>En bancos de tubos, usar la velocidad de entrada en lugar de la <b>velocidad máxima</b> entre tubos.</li>
+<li>Olvidar la corrección por número de filas cuando hay menos de 16.</li>
+<li>En esferas, evaluar todas las propiedades a \(T_f\): esa correlación pide \(T_\infty\) salvo \(\mu_s\).</li>
+</ul></div>
+<h3 id="t7-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un <b>cable eléctrico</b> de <b>8 mm</b> de diámetro y <b>5 m</b> de longitud disipa <b>60 W</b> y está expuesto a una corriente de aire a <b>20 °C</b> que sopla perpendicularmente a <b>6 m/s</b>. Determina la temperatura superficial del cable.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Hipótesis de partida.</b> Suponemos \(T_s\approx60\) °C para evaluar propiedades, y luego comprobaremos. Entonces \(T_f=(60+20)/2=40\) °C, y del aire a 40 °C:</p>
+\[\nu=1{,}702\cdot10^{-5}\ \mathrm{m^2/s},\quad k=0{,}02662\ \mathrm{W/m\,K},\quad Pr=0{,}7255\]
+<p><b>2. Reynolds con el diámetro:</b></p>
+\[Re_D=\frac{U_\infty D}{\nu}=\frac{6\cdot0{,}008}{1{,}702\cdot10^{-5}}=2820\]
+<p><b>3. Churchill-Bernstein</b> (válida para \(Re\,Pr=2046>0{,}2\) ✓):</p>
+\[Nu=0{,}3+\frac{0{,}62\cdot2820^{1/2}\cdot0{,}7255^{1/3}}{\left[1+(0{,}4/0{,}7255)^{2/3}\right]^{1/4}}\left[1+\left(\frac{2820}{282\,000}\right)^{5/8}\right]^{4/5}=27{,}0\]
+\[h=\frac{Nu\,k}{D}=\frac{27{,}0\cdot0{,}02662}{0{,}008}=89{,}8\ \mathrm{W/m^2K}\]
+<p><b>4. Temperatura superficial:</b></p>
+\[A_s=\pi DL=\pi\cdot0{,}008\cdot5=0{,}1257\ \mathrm{m^2}\]
+\[T_s=T_\infty+\frac{\dot Q}{hA_s}=20+\frac{60}{89{,}8\cdot0{,}1257}=\boxed{25{,}3\ ^\circ\mathrm{C}}\]
+<p><b>5. Iteración.</b> Supusimos 60 °C y ha salido 25,3. Repitiendo con \(T_f=(25+20)/2=22{,}5\) °C (\(\nu=1{,}53\cdot10^{-5}\), \(k=0{,}0255\), \(Pr=0{,}73\)): \(Re=3140\), \(Nu=28{,}4\), \(h=90{,}5\) W/m²K y \(T_s=25{,}3\) °C. <b>Converge en una sola iteración</b>, porque \(h\) depende poco de la temperatura en gases.</p>
+<div class="box key"><p><b>Lo que enseña este problema:</b> la convección forzada en aire da \(h\approx90\) W/m²·K, treinta veces más que la natural. Por eso un ventilador barato resuelve problemas térmicos que un disipador enorme no resolvería.</p></div></div></details></div>
+<h3 id="t7-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Dónde está la transición en una placa plana?</summary><div class="inner"><p>En torno a \(Re_x=5\cdot10^5\). La posición física es \(x_{cr}=5\cdot10^5\nu/U_\infty\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué h disminuye a lo largo de la placa?</summary><div class="inner"><p>Porque la <b>capa límite se engrosa</b>: el gradiente de temperatura en la pared se suaviza y el calor pasa peor.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué relación hay entre el Nusselt local y el medio en laminar?</summary><div class="inner"><p>\(\overline{Nu}_L=2\,Nu_{x=L}\): el coeficiente medio es exactamente el doble del local al final de la placa.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué correlación se usa en un cilindro en flujo cruzado?</summary><div class="inner"><p>La de <b>Churchill-Bernstein</b>, válida en prácticamente todo el rango siempre que \(Re\,Pr>0{,}2\). Las propiedades, a la temperatura de película.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué el Nusselt de una esfera tiende a 2?</summary><div class="inner"><p>Porque en un fluido en reposo la conducción pura alrededor de una esfera da exactamente \(Nu=2\); los demás términos son la aportación del movimiento.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué velocidad se usa en un banco de tubos?</summary><div class="inner"><p>La <b>velocidad máxima</b> en la sección más estrecha entre tubos, \(V_{max}=S_TV/(S_T-D)\), no la de entrada.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · Introducción a la convección: capa límite y números adimensionales</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Convección forzada en flujo interno</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

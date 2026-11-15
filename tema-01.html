@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T1 Los tres mecanismos y el balance de energía · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 1, Los tres mecanismos y el balance de energía">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Conducción</span><span class="sep">›</span><span>T1 · Los tres mecanismos y el balance de energía</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)" class="on" aria-current="page">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Conducción · Tema 1</p><h2 id="t1">Los tres mecanismos y el balance de energía</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> distinguir conducción, convección y radiación, saber con qué ley se calcula cada uno y plantear un balance de energía con los tres a la vez.</p><ul>
+<li>La transmisión de calor estudia <b>a qué velocidad</b> se transfiere la energía por una diferencia de temperatura. La termodinámica dice cuánta energía hay; la transmisión de calor, cuánto tiempo tarda.</li>
+<li><b>Conducción:</b> transporte por contacto directo entre partículas, sin movimiento macroscópico. Es el único mecanismo dentro de un sólido opaco.</li>
+<li><b>Convección:</b> conducción más <b>arrastre por el movimiento</b> del fluido. Se llama <i>forzada</i> si el movimiento lo provoca un ventilador o una bomba, y <i>natural</i> (o libre) si lo provoca la propia diferencia de densidades.</li>
+<li><b>Radiación:</b> emisión de ondas electromagnéticas por el hecho de estar a una temperatura. <b>No necesita medio</b> y depende de la <b>cuarta potencia</b> de la temperatura absoluta.</li>
+<li>En un problema real los tres actúan a la vez. Se separan con un <b>balance de energía</b> en una superficie o en un volumen de control.</li>
+<li><b>En las fórmulas de radiación la temperatura va siempre en kelvin.</b> En las de conducción y convección sólo aparecen diferencias, así que da igual °C o K.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">q̇</td><td>flujo de calor</td><td class="u">W/m²</td></tr><tr><td class="sym">Q̇</td><td>potencia térmica</td><td class="u">W</td></tr><tr><td class="sym">k</td><td>conductividad térmica</td><td class="u">W/m·K</td></tr><tr><td class="sym">h</td><td>coeficiente de convección</td><td class="u">W/m²·K</td></tr><tr><td class="sym">ε</td><td>emisividad</td><td class="u">0 ≤ ε ≤ 1</td></tr><tr><td class="sym">σ</td><td>constante de Stefan-Boltzmann</td><td class="u">5,67·10⁻⁸ W/m²·K⁴</td></tr><tr><td class="sym">h_r</td><td>coef. de radiación linealizado</td><td class="u">W/m²·K</td></tr><tr><td class="sym">T_alr</td><td>temperatura de los alrededores</td><td class="u">K</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - conveccion y radiacion desde una superficie</p><div data-sim="mecanismos"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t1-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Fourier (conducción):</b> \(\dot q_n=-k\dfrac{\partial T}{\partial n}\ \left[\mathrm{W/m^2}\right]\); en una pared plana \(\dot Q=kA\dfrac{T_1-T_2}{L}\).</li>
+<li><b>Newton (convección):</b> \(\dot Q=hA_s(T_s-T_\infty)\), con \(h\) en W/m²·K. <b>\(h\) no es una propiedad</b>: depende de la geometría, del fluido y de la velocidad.</li>
+<li><b>Stefan-Boltzmann (radiación):</b> \(\dot Q=\varepsilon\sigma A_s(T_s^4-T_{alr}^4)\), con \(\sigma=5{,}67\cdot10^{-8}\) W/m²·K⁴ y \(0\le\varepsilon\le1\).</li>
+<li><b>Coeficiente de radiación linealizado:</b> \(h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)\), que permite sumarlo al de convección: \(h_{total}=h_c+h_r\).</li>
+<li><b>Balance de energía:</b> \(\dot E_{ent}-\dot E_{sal}+\dot E_{gen}=\dfrac{dE}{dt}\). En una <b>superficie</b> no hay generación ni acumulación: \(\dot E_{ent}=\dot E_{sal}\).</li>
+<li><b>Órdenes de magnitud de \(h\):</b> convección natural en gases 2-25 · forzada en gases 25-250 · natural en líquidos 50-1000 · forzada en líquidos 100-20 000 · cambio de fase 2500-100 000 W/m²·K.</li>
+<li><b>Órdenes de magnitud de \(k\):</b> cobre 400 · aluminio 237 · acero 15-60 · ladrillo 0,7 · agua 0,6 · aislante 0,03-0,05 · aire 0,026 W/m·K.</li>
+</ul></div>
+<h3 id="t1-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Identifica <b>qué mecanismos</b> actúan y entre qué superficies. Haz un croquis con las temperaturas conocidas.</li>
+<li>Elige la <b>superficie o el volumen de control</b> donde plantear el balance. En una superficie, todo lo que entra sale.</li>
+<li>Escribe cada término con su ley: Fourier, Newton o Stefan-Boltzmann.</li>
+<li>Pasa a <b>kelvin</b> los términos de radiación.</li>
+<li>Resuelve. Si queda una ecuación en \(T_s^4\) y \(T_s\), itera o lineariza con \(h_r\).</li>
+<li>Comprueba el <b>orden de magnitud</b> del resultado con la tabla de valores típicos de \(h\).</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Usar grados Celsius en radiación.</b> Es el error más repetido y falsea el resultado por completo.</li>
+<li>Tratar \(h\) como una propiedad del fluido: cambia con la velocidad, la geometría y hasta con la orientación.</li>
+<li>Olvidar que la convección natural y la radiación son <b>del mismo orden</b> en aire a temperaturas moderadas: despreciar la radiación puede ser un error del 50 %.</li>
+<li>Plantear el balance en un volumen cuando el enunciado pide una superficie (o al revés).</li>
+<li>Confundir el flujo \(\dot q\) (W/m²) con la potencia \(\dot Q\) (W). Las unidades son la primera comprobación.</li>
+</ul></div>
+<h3 id="t1-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una resistencia eléctrica cilíndrica de <b>2 cm</b> de diámetro y <b>15 cm</b> de longitud disipa <b>60 W</b> en una habitación cuyo aire y cuyas paredes están a <b>20 °C</b>. El coeficiente de convección vale <b>12 W/m²·K</b> y la emisividad de la superficie es <b>0,8</b>. Calcula la temperatura superficial de la resistencia.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Área lateral</b> (se desprecian las bases):</p>
+\[A=\pi DL=\pi\cdot0{,}02\cdot0{,}15=9{,}42\cdot10^{-3}\ \mathrm{m^2}\]
+<p><b>2. Balance en la superficie.</b> Todo lo que se disipa sale por convección y radiación:</p>
+\[60=hA(T_s-T_\infty)+\varepsilon\sigma A\left(T_s^4-T_{alr}^4\right)\]
+\[60=12\cdot9{,}42\cdot10^{-3}(T_s-293{,}15)+0{,}8\cdot5{,}67\cdot10^{-8}\cdot9{,}42\cdot10^{-3}\left(T_s^4-293{,}15^4\right)\]
+<p><b>3. Resolución iterativa.</b> Probando \(T_s\):</p>
+<div class="tw"><table><tr><th>\(T_s\) (K)</th><th>Convección (W)</th><th>Radiación (W)</th><th>Total (W)</th></tr>
+<tr><td>500</td><td>23,4</td><td>23,6</td><td>47,0</td></tr>
+<tr><td>550</td><td>29,0</td><td>35,8</td><td>64,8</td></tr>
+<tr><td><b>537</b></td><td>27,6</td><td>32,2</td><td><b>59,8 ≈ 60</b> ✓</td></tr></table></div>
+\[\boxed{T_s\approx537\ \mathrm{K}=264\ ^\circ\mathrm{C}}\]
+<p><b>4. Lectura del resultado.</b> La radiación aporta <b>más de la mitad</b> del calor evacuado. Despreciarla habría dado \(T_s=20+60/(12\cdot9{,}42\cdot10^{-3})=551\ ^\circ\)C, más del doble del valor real.</p>
+<div class="box key"><p><b>La idea que hay que llevarse:</b> a temperaturas altas la radiación domina, porque crece con \(T^4\) mientras que la convección sólo crece linealmente.</p></div></div></details></div>
+<h3 id="t1-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué diferencia hay entre termodinámica y transmisión de calor?</summary><div class="inner"><p>La termodinámica dice <b>cuánta</b> energía se intercambia entre dos estados de equilibrio; la transmisión de calor dice <b>a qué velocidad</b> ocurre y qué temperaturas aparecen por el camino.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué h no es una propiedad del fluido?</summary><div class="inner"><p>Porque engloba el efecto del <b>movimiento</b> del fluido: depende de la velocidad, de la geometría, de la orientación y del régimen. Es un resultado del problema, no un dato de tabla.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuándo hay que usar kelvin obligatoriamente?</summary><div class="inner"><p>En <b>radiación</b>, porque aparece \(T^4\) y no una diferencia. En conducción y convección sólo aparecen diferencias de temperatura y da igual la escala.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué es la convección natural?</summary><div class="inner"><p>Aquélla en la que el movimiento del fluido lo provoca la <b>diferencia de densidades</b> causada por el propio calentamiento, sin ventilador ni bomba.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué orden de magnitud tiene h en aire en convección natural?</summary><div class="inner"><p>Entre <b>2 y 25 W/m²·K</b>. Si en un problema sale 500 con aire quieto, hay un error.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se linealiza la radiación?</summary><div class="inner"><p>Con \(h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)\), que permite escribir \(\dot Q=(h_c+h_r)A\Delta T\) y resolver sin iterar, aunque \(h_r\) dependa aún de \(T_s\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="plan.html"><small>← Anterior</small>Cómo es la evaluación</a><a class="nx" href="tema-02.html"><small>Siguiente →</small>T2 · La ecuación general de la conducción</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

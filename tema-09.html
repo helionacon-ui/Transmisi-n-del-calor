@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T9 Convección natural · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 9, Convección natural">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Convección, radiación e intercambiadores</span><span class="sep">›</span><span>T9 · Convección natural</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)" class="on" aria-current="page">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 9</p><h2 id="t9">Convección natural</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular el coeficiente de convección cuando el movimiento lo provoca la propia diferencia de densidades, con los números de Grashof y Rayleigh, y dimensionar una matriz de aletas.</p><ul>
+<li>Sin ventilador ni bomba, el fluido se mueve porque al calentarse <b>se dilata y asciende</b>. El motor es la gravedad combinada con la diferencia de densidades.</li>
+<li>El <b>número de Grashof</b> sustituye aquí al Reynolds: compara las fuerzas de flotación con las viscosas.</li>
+<li>El que manda en las correlaciones es el <b>número de Rayleigh</b>, \(Ra=Gr\cdot Pr\). La transición a turbulento en placa vertical está en \(Ra\approx10^9\).</li>
+<li>Los coeficientes son <b>pequeños</b>: 2-25 W/m²·K en gases. Por eso en convección natural <b>la radiación nunca es despreciable</b>: suele ser del mismo orden.</li>
+<li>La <b>orientación importa</b>: una placa caliente mirando hacia arriba disipa mucho más que mirando hacia abajo, porque en el segundo caso el aire caliente queda atrapado.</li>
+<li>En <b>matrices de aletas</b> hay un compromiso: muchas aletas dan más área pero estrangulan el flujo. Existe una <b>separación óptima</b>.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Gr</td><td>número de Grashof</td><td class="u">gβΔTL³/ν²</td></tr><tr><td class="sym">Ra</td><td>número de Rayleigh</td><td class="u">Gr·Pr</td></tr><tr><td class="sym">β</td><td>coef. de expansión volumétrica</td><td class="u">1/T para gases, 1/K</td></tr><tr><td class="sym">S_opt</td><td>separación óptima de aletas</td><td class="u">2,714 L/Ra^0,25</td></tr><tr><td class="sym">L_c</td><td>longitud característica</td><td class="u">altura, A_s/P o D</td></tr><tr><td class="sym">k_ef</td><td>conductividad efectiva</td><td class="u">k·Nu en recintos</td></tr><tr><td class="sym">H/L</td><td>relación de aspecto</td><td class="u">recintos cerrados</td></tr><tr><td class="sym">θ</td><td>ángulo de inclinación</td><td class="u">recintos inclinados</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - conveccion natural frente a radiacion</p><div data-sim="natural"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t9-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Coeficiente de expansión:</b> \(\beta=-\dfrac1\rho\left(\dfrac{\partial\rho}{\partial T}\right)_P\); para gas ideal \(\beta=1/T\) (en kelvin).</li>
+<li><b>Grashof:</b> \(Gr=\dfrac{g\beta(T_s-T_\infty)L_c^3}{\nu^2}\) · <b>Rayleigh:</b> \(Ra=Gr\,Pr\).</li>
+<li><b>Placa vertical (Churchill-Chu, todo el rango):</b> \(Nu=\left\{0{,}825+\dfrac{0{,}387Ra^{1/6}}{\left[1+(0{,}492/Pr)^{9/16}\right]^{8/27}}\right\}^2\).</li>
+<li><b>Placa vertical laminar</b> (\(10^4<Ra<10^9\)): \(Nu=0{,}59Ra^{1/4}\) · <b>turbulenta</b> (\(10^9<Ra<10^{13}\)): \(Nu=0{,}1Ra^{1/3}\).</li>
+<li><b>Placa horizontal</b> (\(L_c=A_s/P\)): caliente hacia arriba \(Nu=0{,}54Ra^{1/4}\) (\(10^4\!-\!10^7\)) y \(0{,}15Ra^{1/3}\) (\(10^7\!-\!10^{11}\)); caliente hacia abajo \(Nu=0{,}27Ra^{1/4}\).</li>
+<li><b>Cilindro horizontal</b> (\(L_c=D\)): \(Nu=\left\{0{,}6+\dfrac{0{,}387Ra^{1/6}}{\left[1+(0{,}559/Pr)^{9/16}\right]^{8/27}}\right\}^2\).</li>
+<li><b>Matriz de aletas verticales con \(T_s\) constante:</b> \(S_{opt}=2{,}714\dfrac{L}{Ra_L^{0{,}25}}\) y \(Nu=\dfrac{hS}{k}=\left[\dfrac{576}{(Ra_SS/L)^2}+\dfrac{2{,}873}{(Ra_SS/L)^{0{,}5}}\right]^{-1/2}\).</li>
+<li><b>Recintos cerrados:</b> \(k_{ef}=k\,Nu\); en recintos verticales \(Nu=0{,}22\left(\dfrac{Pr}{0{,}2+Pr}Ra_L\right)^{0{,}28}\) para \(2<H/L<10\).</li>
+</ul></div>
+<h3 id="t9-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Calcula \(T_f\) y saca las propiedades del fluido; recuerda \(\beta=1/T_f\) en kelvin para gases.</li>
+<li>Elige la <b>longitud característica</b> según la geometría: altura en placa vertical, \(A_s/P\) en horizontal, \(D\) en cilindro.</li>
+<li>Calcula \(Ra\) y mira en qué rango cae.</li>
+<li>Elige la correlación, obtén \(Nu\) y después \(h=Nu\,k/L_c\).</li>
+<li><b>Añade la radiación</b>: \(h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)\) y suma, \(h_{total}=h+h_r\).</li>
+<li>Si \(T_s\) era incógnita, itera: casi siempre converge en dos pasadas.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Olvidar la radiación.</b> En aire con \(h\approx5\) y \(h_r\approx6\) W/m²·K, el error es de más del 50 %.</li>
+<li>Usar \(\beta\) en °C: para gas ideal es \(1/T\) con \(T\) en <b>kelvin</b>.</li>
+<li>Tomar la longitud característica equivocada: en placa horizontal es \(A_s/P\), no el lado.</li>
+<li>No distinguir si la placa caliente mira <b>hacia arriba o hacia abajo</b>: el coeficiente se reduce a la mitad.</li>
+<li>Aplicar la correlación laminar con \(Ra>10^9\).</li>
+<li>En matrices de aletas, poner las aletas demasiado juntas: se estrangula el flujo y se disipa <b>menos</b> que con menos aletas.</li>
+</ul></div>
+<h3 id="t9-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una <b>placa vertical</b> de <b>0,5 m</b> de altura y 1 m de ancho está a <b>70 °C</b> en aire en reposo a <b>20 °C</b>. Calcula el coeficiente de convección natural y la potencia disipada, y compara con la radiación si la emisividad es 0,9.</p>
+<p class="muted">Aire a 45 °C: \(\nu=1{,}75\cdot10^{-5}\) m²/s, \(k=0{,}02735\) W/m·K, \(Pr=0{,}7241\).</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Rayleigh con la altura como longitud característica:</b></p>
+\[\beta=\frac1{T_f}=\frac1{318{,}15}=3{,}143\cdot10^{-3}\ \mathrm{K^{-1}}\]
+\[Ra_L=\frac{g\beta(T_s-T_\infty)L^3}{\nu^2}Pr=\frac{9{,}81\cdot3{,}143\cdot10^{-3}\cdot50\cdot0{,}5^3}{\left(1{,}75\cdot10^{-5}\right)^2}\cdot0{,}7241=\mathbf{4{,}56\cdot10^8}\]
+<p>Está por debajo de \(10^9\): régimen <b>laminar</b>.</p>
+<p><b>2. Churchill-Chu:</b></p>
+\[Nu=\left\{0{,}825+\frac{0{,}387\left(4{,}56\cdot10^8\right)^{1/6}}{\left[1+(0{,}492/0{,}7241)^{9/16}\right]^{8/27}}\right\}^2=96{,}8\]
+\[h=\frac{Nu\,k}{L}=\frac{96{,}8\cdot0{,}02735}{0{,}5}=\boxed{5{,}29\ \mathrm{W/m^2K}}\]
+<p><b>3. Potencia por convección</b> (\(A=0{,}5\) m²):</p>
+\[\dot Q_{conv}=5{,}29\cdot0{,}5\cdot50=\boxed{132\ \mathrm{W}}\]
+<p><b>4. Radiación:</b></p>
+\[h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)=0{,}9\cdot5{,}67\cdot10^{-8}(343{,}15+293{,}15)(343{,}15^2+293{,}15^2)=6{,}61\ \mathrm{W/m^2K}\]
+\[\dot Q_{rad}=6{,}61\cdot0{,}5\cdot50=165\ \mathrm{W}\]
+<div class="box key"><p><b>El resultado que hay que recordar:</b> la radiación evacua <b>más calor que la convección natural</b> (165 W frente a 132 W). Un cálculo de convección natural en aire sin radiación está mal planteado, no sólo incompleto. El total real es de <b>297 W</b>, con un \(h\) equivalente de 11,9 W/m²·K.</p></div></div></details></div>
+<h3 id="t9-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué sustituye al Reynolds en convección natural?</summary><div class="inner"><p>El <b>Grashof</b>, \(Gr=g\beta\Delta T L^3/\nu^2\), que compara las fuerzas de flotación con las viscosas. En las correlaciones se usa \(Ra=Gr\,Pr\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuánto vale β para un gas?</summary><div class="inner"><p>\(\beta=1/T\), con la temperatura <b>absoluta</b>, evaluada a la temperatura de película.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Dónde está la transición en una placa vertical?</summary><div class="inner"><p>En \(Ra\approx10^9\). Por debajo, laminar; por encima, turbulento.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Por qué no se puede despreciar la radiación aquí?</summary><div class="inner"><p>Porque los coeficientes de convección natural en gases son de 2 a 25 W/m²·K, el mismo orden que el \(h_r\) equivalente de radiación a temperaturas moderadas.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué disipa menos una placa caliente mirando hacia abajo?</summary><div class="inner"><p>Porque el aire caliente, que tiende a subir, <b>queda atrapado</b> contra la placa y el movimiento es mucho más débil. El coeficiente cae a la mitad.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué existe una separación óptima entre aletas?</summary><div class="inner"><p>Porque más aletas dan más área pero estrangulan el flujo natural entre ellas. El óptimo equilibra ambos efectos: \(S_{opt}=2{,}714L/Ra_L^{0{,}25}\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-08.html"><small>← Anterior</small>T8 · Convección forzada en flujo interno</a><a class="nx" href="tema-10.html"><small>Siguiente →</small>T10 · Radiación térmica</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

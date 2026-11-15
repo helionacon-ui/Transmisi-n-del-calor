@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Transmisión del Calor (UPCT, GIEyA): conducción y ecuación general, aletas, métodos numéricos, régimen transitorio y número de Biot, capa límite, convección forzada externa e interna, convección natural, radiación térmica e intercambiadores de calor, con figuras interactivas y problemas de examen resueltos">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 2.º curso · 2.º cuatrimestre</div>
+<h1>Transmisión del <span>Calor</span></h1><p class="sub">Conducción, convección, radiación e intercambiadores · Guía para aprobar</p>
+<div class="stats"><div><b>11</b><span>temas, de la ley de Fourier al método NTU</span></div><div><b>13</b><span>figuras interactivas que calculan de verdad</span></div><div><b>8</b><span>problemas de examen resueltos</span></div><div><b>46</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Exámenes</a><a class="btn" href="problemas.html">Qué cae</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<rect x="-96" y="-66" width="40" height="132" rx="3" fill="none" stroke="var(--line)" stroke-width="2"></rect>
+<path d="M -56 -40 q 30 -14 58 0 q 28 14 54 0" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"></path>
+<path d="M -56 0 q 30 -14 58 0 q 28 14 54 0" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" opacity=".7"></path>
+<path d="M -56 40 q 30 -14 58 0 q 28 14 54 0" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" opacity=".45"></path>
+<line x1="-88" y1="-46" x2="-88" y2="46" stroke="var(--warn)" stroke-width="4" stroke-linecap="round"></line>
+<circle cx="-76" cy="-30" r="4" fill="var(--warn)"></circle>
+<circle cx="-76" cy="10" r="4" fill="var(--warn)" opacity=".6"></circle>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-86">q = -k &#8711;T &#183; q = h&#916;T &#183; q = &#949;&#963;T&#8308;</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="92">Bi &#183; Fo &#183; Re &#183; Pr &#183; Nu &#183; Gr &#183; Ra &#183; NTU</text></svg>
+<p class="art-cap">Tres mecanismos, una docena de números adimensionales y un formulario que hay que saber navegar.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Interioriza los <b>tres mecanismos</b> y sus tres leyes. Casi todos los problemas son un balance de energía donde cada término es uno de los tres.</li>
+<li>Ten claro el <b>mapa de decisiones</b>: en conducción, ¿permanente o transitorio? ¿\(Bi\le0{,}1\)? En convección, ¿forzada o natural? ¿interna o externa? ¿laminar o turbulento? Cada respuesta te lleva a una correlación concreta.</li>
+<li>Haz las <b>figuras interactivas</b> de cada tema: calculan exactamente lo que tendrás que calcular tú, así que sirven para comprobar resultados y para ver cómo influye cada variable.</li>
+<li>Aprende a <b>navegar el formulario oficial</b>. Lo tendrás en el examen, pero sólo sirve si sabes dónde está cada correlación y qué condiciones lleva asociadas.</li>
+<li>Haz los <a href="examenes.html">problemas de examen resueltos</a> antes de mirar la solución. Son de convocatorias reales entre 2012 y 2022, y el esquema se repite.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Los tres mecanismos y el balance de energía</a><a href="tema-02.html"><b>T2</b>La ecuación general de la conducción</a><a href="tema-03.html"><b>T3</b>Conducción unidimensional permanente y aletas</a><a href="tema-04.html"><b>T4</b>Métodos numéricos en conducción</a><a href="tema-05.html"><b>T5</b>Conducción en régimen transitorio</a><a href="tema-06.html"><b>T6</b>Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html"><b>T7</b>Convección forzada en flujo externo</a><a href="tema-08.html"><b>T8</b>Convección forzada en flujo interno</a><a href="tema-09.html"><b>T9</b>Convección natural</a><a href="tema-10.html"><b>T10</b>Radiación térmica</a><a href="tema-11.html"><b>T11</b>Intercambiadores de calor</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Las <b>transparencias de los once temas</b> del curso 2022/23, el <b>formulario oficial</b> de la asignatura (v7 completo), los guiones de las prácticas de laboratorio y de informática, los seminarios de problemas y los <b>exámenes resueltos de 2012 a 2022</b>, de donde salen los problemas de esta guía.</p></div>
+<div class="box trap"><h4>Lo que distingue a quien aprueba</h4><p>No es saberse las correlaciones de memoria (están en el formulario), sino <b>elegir la correcta y comprobar su rango</b>. Los enunciados piden explícitamente «justifique las hipótesis» y «confirme que se cumplen las condiciones de la correlación usada»: esos apartados puntúan aparte y se resuelven en tres líneas.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Los tres mecanismos y el balance de energía</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · La ecuación general de la conducción</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Conducción unidimensional permanente y aletas</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Métodos numéricos en conducción</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · Conducción en régimen transitorio</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Introducción a la convección: capa límite y números adimensionales</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Convección forzada en flujo externo</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · Convección forzada en flujo interno</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">T9 · Convección natural</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">T10 · Radiación térmica</label></div><div class="check"><input type="checkbox" id="c11"><label for="c11">T11 · Intercambiadores de calor</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

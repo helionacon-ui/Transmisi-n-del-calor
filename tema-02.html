@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 La ecuación general de la conducción · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 2, La ecuación general de la conducción">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Conducción</span><span class="sep">›</span><span>T2 · La ecuación general de la conducción</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)" class="on" aria-current="page">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Conducción · Tema 2</p><h2 id="t2">La ecuación general de la conducción</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> escribir la ecuación general de la conducción en cartesianas, cilíndricas y esféricas, simplificarla justificando las hipótesis y plantear las condiciones de contorno.</p><ul>
+<li>La ecuación general sale de un <b>balance de energía en un volumen diferencial</b>: lo que entra menos lo que sale más lo que se genera es lo que se acumula.</li>
+<li>Casi todo el trabajo de examen consiste en <b>tachar términos</b>: régimen permanente anula \(\partial T/\partial t\), la unidimensionalidad anula dos derivadas espaciales y la ausencia de generación anula \(\dot q_g\).</li>
+<li><b>Cada hipótesis hay que justificarla</b>, no sólo enunciarla: el enunciado del examen lo pide explícitamente y puntúa aparte.</li>
+<li>Si \(k\) <b>depende de la temperatura</b>, no se puede sacar de la derivada: hay que integrar \(k(T)\,dT\). Es el caso favorito de las cuestiones teóricas.</li>
+<li>La <b>difusividad térmica</b> \(\alpha=k/(\rho c_p)\) mide con qué rapidez se propaga un cambio de temperatura. Un material con \(\alpha\) grande responde rápido.</li>
+<li>Resolver la ecuación necesita <b>tantas condiciones de contorno como orden</b> tenga en cada dirección, más una condición inicial si hay tiempo.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">α</td><td>difusividad térmica</td><td class="u">k/(ρc_p), m²/s</td></tr><tr><td class="sym">ρ</td><td>densidad</td><td class="u">kg/m³</td></tr><tr><td class="sym">c_p</td><td>calor específico</td><td class="u">J/kg·K</td></tr><tr><td class="sym">q̇_g</td><td>generación interna</td><td class="u">W/m³</td></tr><tr><td class="sym">∇²T</td><td>laplaciano de la temperatura</td><td class="u">K/m²</td></tr><tr><td class="sym">C.C.</td><td>condición de contorno</td><td class="u">Dirichlet, Neumann o Robin</td></tr><tr><td class="sym">k(T)</td><td>conductividad variable</td><td class="u">no sale de la derivada</td></tr><tr><td class="sym">L</td><td>espesor de la pared</td><td class="u">m</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - que terminos sobreviven en cada caso</p><div data-sim="ecuacion"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t2-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Cartesianas:</b> \(\dfrac{\partial}{\partial x}\!\left(k\dfrac{\partial T}{\partial x}\right)+\dfrac{\partial}{\partial y}\!\left(k\dfrac{\partial T}{\partial y}\right)+\dfrac{\partial}{\partial z}\!\left(k\dfrac{\partial T}{\partial z}\right)+\dot q_g=\rho c\dfrac{\partial T}{\partial t}\)</li>
+<li><b>Cilíndricas:</b> \(\dfrac1r\dfrac{\partial}{\partial r}\!\left(kr\dfrac{\partial T}{\partial r}\right)+\dfrac1{r^2}\dfrac{\partial}{\partial\varphi}\!\left(k\dfrac{\partial T}{\partial\varphi}\right)+\dfrac{\partial}{\partial z}\!\left(k\dfrac{\partial T}{\partial z}\right)+\dot q_g=\rho c\dfrac{\partial T}{\partial t}\)</li>
+<li><b>Esféricas:</b> \(\dfrac1{r^2}\dfrac{\partial}{\partial r}\!\left(kr^2\dfrac{\partial T}{\partial r}\right)+\dots+\dot q_g=\rho c\dfrac{\partial T}{\partial t}\)</li>
+<li><b>Difusividad térmica:</b> \(\alpha=\dfrac{k}{\rho c_p}\ \left[\mathrm{m^2/s}\right]\); con \(k\) constante la ecuación queda \(\nabla^2T+\dot q_g/k=\dfrac1\alpha\dfrac{\partial T}{\partial t}\).</li>
+<li><b>Condiciones de contorno:</b> temperatura impuesta \(T(0)=T_0\) (Dirichlet) · flujo impuesto \(-k\,\partial T/\partial x=\dot q_0\) (Neumann) · adiabática \(\partial T/\partial x=0\) · convección \(-k\,\partial T/\partial x=h(T_s-T_\infty)\) (Robin) · simetría \(\partial T/\partial x|_{centro}=0\).</li>
+<li><b>Conductividad variable:</b> \(\dot q\int dx=-\int_{T_1}^{T_2}k(T)\,dT\); con \(k\) lineal basta usar \(k_m=k(T_m)\), con \(T_m=(T_1+T_2)/2\).</li>
+</ul></div>
+<h3 id="t2-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Elige el <b>sistema de coordenadas</b> según la geometría: plana, cilíndrica o esférica.</li>
+<li>Escribe la <b>ecuación general</b> completa en esas coordenadas.</li>
+<li>Tacha términos <b>justificando</b> cada hipótesis: permanente, unidimensional, sin generación, propiedades constantes.</li>
+<li>Escribe las <b>condiciones de contorno</b>, una por cada orden de derivada y dirección.</li>
+<li>Integra. Con \(k\) constante salen rectas (plana), logaritmos (cilindro) o \(1/r\) (esfera).</li>
+<li>Aplica las condiciones para obtener las constantes y, de ahí, el flujo con Fourier.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Sacar \(k\) de la derivada cuando depende de \(T\).</b> Es lo que precisamente se quiere comprobar.</li>
+<li>Enunciar las hipótesis sin justificarlas: ese apartado puntúa por sí solo.</li>
+<li>Olvidar que en un cilindro el área <b>crece con el radio</b>: el perfil de temperatura no es una recta, es un logaritmo.</li>
+<li>Poner menos condiciones de contorno de las necesarias y quedarse con constantes sin determinar.</li>
+<li>Confundir la condición de simetría (\(\partial T/\partial r=0\) en el centro) con una pared adiabática mal colocada.</li>
+<li>Usar \(\alpha\) donde toca \(k\): la difusividad sólo aparece en problemas <b>transitorios</b>.</li>
+</ul></div>
+<h3 id="t2-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un cilindro hueco de radios <b>r<sub>i</sub> = 5 cm</b> y <b>r<sub>e</sub> = 10 cm</b> tiene sus superficies a <b>T<sub>i</sub> = 473,15 K</b> y <b>T<sub>e</sub> = 373,15 K</b>. La conductividad varía con la temperatura según \(k(T)=k_0(1+bT^2)\), con \(k_0=50\) W/m·K y \(b=0{,}2\cdot10^{-4}\) K⁻². Determina el flujo de calor por unidad de longitud. <span class="muted">(Examen de junio de 2021, cuestión 1)</span></p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Partimos de la ecuación general en cilíndricas</b> con régimen permanente, flujo radial y sin generación:</p>
+\[0=\frac{d}{dr}\left(k(T)A(r)\frac{dT}{dr}\right),\qquad A(r)=2\pi rL\]
+<p><b>2. Primera integración.</b> El producto es constante y vale \(-\dot Q\):</p>
+\[k(T)\,2\pi rL\frac{dT}{dr}=-\dot Q\ \Rightarrow\ \frac{\dot Q}{2\pi L}\frac{dr}{r}=-k(T)\,dT\]
+<p><b>3. Integramos entre las dos superficies.</b> Aquí es donde \(k(T)\) <b>no puede salir</b> de la integral:</p>
+\[\frac{\dot Q}{2\pi L}\ln\frac{r_e}{r_i}=\int_{T_e}^{T_i}k_0\left(1+bT^2\right)dT=k_0\left[(T_i-T_e)+\frac{b}{3}\left(T_i^3-T_e^3\right)\right]\]
+<p><b>4. Sustituimos:</b></p>
+\[k_0\left[(473{,}15-373{,}15)+\frac{0{,}2\cdot10^{-4}}{3}\left(473{,}15^3-373{,}15^3\right)\right]=50\cdot459{,}8=22\,989\ \mathrm{W/m}\]
+\[\frac{\dot Q}{L}=\frac{2\pi\cdot22\,989}{\ln(0{,}10/0{,}05)}=\boxed{208\ \mathrm{kW/m}}\]
+<p><b>5. Comprobación.</b> Con \(k\) evaluada a la temperatura media, \(k(T_m)=50(1+0{,}2\cdot10^{-4}\cdot423{,}15^2)=229{,}1\) W/m·K, saldría 207,6 kW/m: una diferencia del <b>0,4 %</b>. La aproximación de la conductividad media funciona bien, pero sólo vale como comprobación, no como solución.</p></div></details></div>
+<h3 id="t2-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿De dónde sale la ecuación general de la conducción?</summary><div class="inner"><p>De un <b>balance de energía en un volumen diferencial</b>: entrada − salida + generación = acumulación, aplicando la ley de Fourier a cada cara.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué significa que un problema sea de régimen permanente?</summary><div class="inner"><p>Que \(\partial T/\partial t=0\): la temperatura de cada punto no cambia con el tiempo, aunque puede variar de un punto a otro.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué es la difusividad térmica?</summary><div class="inner"><p>\(\alpha=k/(\rho c_p)\), en m²/s: compara la facilidad para <b>conducir</b> el calor con la de <b>almacenarlo</b>. Mide la velocidad a la que se propaga un cambio térmico.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cuántas condiciones de contorno hacen falta?</summary><div class="inner"><p>Dos por cada dirección en la que haya derivada segunda, más una <b>condición inicial</b> si el problema es transitorio.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cómo se escribe una condición de contorno de convección?</summary><div class="inner"><p>\(-k\,\partial T/\partial x|_{s}=h(T_s-T_\infty)\): el calor que llega por conducción desde dentro sale por convección hacia el fluido.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué el perfil en un cilindro no es una recta?</summary><div class="inner"><p>Porque el <b>área crece con el radio</b>. Como el flujo total es constante, el gradiente debe disminuir: el resultado es un perfil logarítmico.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · Los tres mecanismos y el balance de energía</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Conducción unidimensional permanente y aletas</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

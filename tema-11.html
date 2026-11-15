@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T11 Intercambiadores de calor · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 11, Intercambiadores de calor">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Convección, radiación e intercambiadores</span><span class="sep">›</span><span>T11 · Intercambiadores de calor</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)" class="on" aria-current="page">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 11</p><h2 id="t11">Intercambiadores de calor</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Radiación e intercambiadores</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> clasificar los intercambiadores, calcular el coeficiente global U y resolver con los métodos de la diferencia media logarítmica (LMTD) y de la eficiencia-NTU.</p><ul>
+<li>Un intercambiador transfiere calor entre dos fluidos sin mezclarlos. Los tipos básicos: <b>doble tubo</b>, <b>carcasa y tubos</b>, <b>placas</b> y <b>compactos</b> (con aletas).</li>
+<li>La disposición puede ser en <b>paralelo</b> (los dos fluidos en el mismo sentido) o a <b>contracorriente</b>, que siempre es más eficaz: permite que la salida del frío supere a la salida del caliente.</li>
+<li>El <b>coeficiente global U</b> agrupa todas las resistencias: convección interior, pared, suciedad y convección exterior. Casi siempre manda la <b>peor</b> de las dos convecciones.</li>
+<li>El <b>método LMTD</b> se usa cuando se conocen las cuatro temperaturas y se busca el área: \(\dot Q=UA\,F\,\Delta T_{lm}\).</li>
+<li>El <b>método ε-NTU</b> se usa cuando se conoce el equipo y se buscan las temperaturas de salida: evita iterar.</li>
+<li>La <b>suciedad</b> (<i>fouling</i>) puede dominar el diseño: es la razón de sobredimensionar y de limpiar periódicamente.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">U</td><td>coeficiente global</td><td class="u">W/m²·K</td></tr><tr><td class="sym">UA</td><td>conductancia del equipo</td><td class="u">W/K</td></tr><tr><td class="sym">C</td><td>capacidad calorífica de flujo</td><td class="u">ṁc_p, W/K</td></tr><tr><td class="sym">C_min, C_max</td><td>mayor y menor</td><td class="u">W/K</td></tr><tr><td class="sym">c</td><td>relación de capacidades</td><td class="u">C_min/C_max</td></tr><tr><td class="sym">NTU</td><td>número de unidades de transferencia</td><td class="u">UA/C_min</td></tr><tr><td class="sym">ε</td><td>eficiencia</td><td class="u">Q̇/Q̇_max</td></tr><tr><td class="sym">R_f</td><td>resistencia de suciedad</td><td class="u">m²·K/W</td></tr><tr><td class="sym">F</td><td>factor de corrección de la LMTD</td><td class="u">≤ 1</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - intercambiador por LMTD y NTU</p><div data-sim="intercambiador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t11-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Coeficiente global:</b> \(\dfrac1{UA}=\dfrac1{(\eta_0hA)_F}+\dfrac{R''_{f,F}}{(\eta_0A)_F}+R_w+\dfrac{R''_{f,C}}{(\eta_0A)_C}+\dfrac1{(\eta_0hA)_C}\). Con pared delgada y sin suciedad ni aletas: \(\dfrac1U=\dfrac1{h_F}+\dfrac1{h_C}\).</li>
+<li><b>Balance:</b> \(\dot Q=\dot m_Cc_{p,C}(T_{C,e}-T_{C,s})=\dot m_Fc_{p,F}(T_{F,s}-T_{F,e})\).</li>
+<li><b>LMTD:</b> \(\Delta T_{lm}=\dfrac{\Delta T_1-\Delta T_2}{\ln(\Delta T_1/\Delta T_2)}\); en paralelo \(\Delta T_1=T_{C,e}-T_{F,e}\) y \(\Delta T_2=T_{C,s}-T_{F,s}\); a contracorriente \(\Delta T_1=T_{C,e}-T_{F,s}\) y \(\Delta T_2=T_{C,s}-T_{F,e}\).</li>
+<li><b>Factor de corrección:</b> \(\dot Q=UAF\Delta T_{lm,CC}\), con \(F\) de gráfica en función de \(P=\dfrac{T_{F,s}-T_{F,e}}{T_{C,e}-T_{F,e}}\) y \(R=\dfrac{T_{C,e}-T_{C,s}}{T_{F,s}-T_{F,e}}\).</li>
+<li><b>Capacidades:</b> \(C=\dot mc_p\); \(c=C_{min}/C_{max}\); \(NTU=\dfrac{UA}{C_{min}}\).</li>
+<li><b>Eficiencia:</b> \(\varepsilon=\dfrac{\dot Q_{real}}{\dot Q_{max}}\), con \(\dot Q_{max}=C_{min}(T_{C,e}-T_{F,e})\).</li>
+<li><b>Contracorriente:</b> \(\varepsilon=\dfrac{1-e^{-NTU(1-c)}}{1-c\,e^{-NTU(1-c)}}\) · <b>paralelo:</b> \(\varepsilon=\dfrac{1-e^{-NTU(1+c)}}{1+c}\) · <b>cambio de fase</b> (\(c=0\)): \(\varepsilon=1-e^{-NTU}\).</li>
+</ul></div>
+<h3 id="t11-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Haz el <b>balance de energía</b> y calcula \(\dot Q\) con el fluido del que conozcas entrada y salida.</li>
+<li>Calcula los coeficientes \(h\) de cada lado (son problemas de convección interna o externa) y de ahí \(U\).</li>
+<li>Decide el método: si conoces las <b>cuatro temperaturas</b> y buscas \(A\), usa LMTD; si conoces el <b>equipo</b> y buscas las salidas, usa ε-NTU.</li>
+<li>Con LMTD: calcula \(\Delta T_{lm}\), aplica \(F\) si no es doble tubo puro y despeja \(A\).</li>
+<li>Con NTU: calcula \(C_{min}\), \(c\) y \(NTU\), obtén \(\varepsilon\) de la fórmula o de la gráfica y de ahí \(\dot Q\) y las temperaturas de salida.</li>
+<li><b>Comprueba</b> el resultado con el otro método o verificando que no se cruzan las temperaturas.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Confundir \(C_{min}\) con el caudal menor: es el menor producto \(\dot mc_p\), no el menor caudal.</li>
+<li>Calcular \(\Delta T_{lm}\) con los saltos de la disposición equivocada.</li>
+<li>Olvidar el <b>factor F</b> en intercambiadores de carcasa y tubos o de flujo cruzado.</li>
+<li>Usar LMTD cuando faltan dos temperaturas: obliga a iterar, mientras que ε-NTU lo resuelve directamente.</li>
+<li>En un condensador o un evaporador, no darse cuenta de que \(c=0\) porque el fluido que cambia de fase tiene \(C\to\infty\).</li>
+<li>Aceptar un resultado en el que el frío sale <b>más caliente</b> que la entrada del caliente: es termodinámicamente imposible.</li>
+</ul></div>
+<h3 id="t11-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un intercambiador a <b>contracorriente</b> de carcasa y un paso por tubos tiene <b>gases de combustión</b> por la carcasa (40 kg/s, entran a 400 °C, \(c_p=1{,}04\) kJ/kg·K, \(h=260\) W/m²·K) y un <b>líquido</b> por los tubos (3 kg/s, entra a 100 °C, \(c_p=1{,}5\) kJ/kg·K, \(\rho=500\) kg/m³, \(h=580\) W/m²·K). Los tubos miden 4 m, con \(D_i=10\) mm, y la velocidad del líquido no debe superar <b>1 m/s</b>. Determina el número de tubos, \(UA\), la eficiencia y la temperatura de salida de los gases. <span class="muted">(Examen de febrero de 2020, problema 1)</span></p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Número de tubos.</b> Lo fija la velocidad máxima:</p>
+\[\dot V=\frac{\dot m}{\rho}=\frac{3}{500}=6{,}0\cdot10^{-3}\ \mathrm{m^3/s};\qquad A_{total}=\frac{\dot V}{v_{max}}=60\ \mathrm{cm^2}\]
+\[n=\frac{A_{total}}{\pi D_i^2/4}=\frac{6{,}0\cdot10^{-3}}{7{,}854\cdot10^{-5}}=76{,}4\ \Rightarrow\ \boxed{n=77\ \text{tubos}}\]
+<p><b>2. Coeficiente global y área.</b> Pared delgada y sin suciedad:</p>
+\[\frac1U=\frac1{260}+\frac1{580}=5{,}57\cdot10^{-3}\ \Rightarrow\ U=179{,}5\ \mathrm{W/m^2K}\]
+\[A=n\pi D_iL=77\pi\cdot0{,}01\cdot4=9{,}68\ \mathrm{m^2}\ \Rightarrow\ \boxed{UA=1{,}74\ \mathrm{kW/K}}\]
+<p><b>3. Capacidades caloríficas:</b></p>
+\[C_{gas}=40\cdot1040=41{,}6\ \mathrm{kW/K};\qquad C_{liq}=3\cdot1500=4{,}5\ \mathrm{kW/K}\]
+\[C_{min}=4{,}5\ \mathrm{kW/K}\ (\text{el líquido});\quad c=\frac{4{,}5}{41{,}6}=0{,}108;\quad NTU=\frac{1{,}74}{4{,}5}=0{,}386\]
+<p><b>4. Eficiencia (contracorriente):</b></p>
+\[\varepsilon=\frac{1-e^{-0{,}386(1-0{,}108)}}{1-0{,}108\,e^{-0{,}386(1-0{,}108)}}=\boxed{0{,}315}\]
+<p><b>5. Calor y temperaturas de salida:</b></p>
+\[\dot Q_{max}=C_{min}\left(T_{C,e}-T_{F,e}\right)=4{,}5\cdot(400-100)=1350\ \mathrm{kW}\]
+\[\dot Q=\varepsilon\dot Q_{max}=426\ \mathrm{kW}\]
+\[T_{gases,sal}=400-\frac{426}{41{,}6}=\boxed{389{,}8\ ^\circ\mathrm{C}};\qquad T_{liq,sal}=100+\frac{426}{4{,}5}=194{,}6\ ^\circ\mathrm{C}\]
+<div class="box trap"><h4>Cómo leer un NTU tan bajo</h4><p>Un \(NTU=0{,}39\) significa que el equipo es <b>muy pequeño</b> para el servicio: sólo aprovecha el 31 % del salto disponible. Los gases apenas se enfrían 10 °C. Para mejorar habría que aumentar el área (más tubos o más largos) o el coeficiente del lado de gases, que es el que limita \(U\).</p></div></div></details></div>
+<h3 id="t11-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué es mejor la contracorriente que el flujo paralelo?</summary><div class="inner"><p>Porque mantiene un salto de temperaturas más uniforme y permite que el fluido frío salga <b>más caliente</b> que la salida del caliente, lo que en paralelo es imposible.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué es el coeficiente global U?</summary><div class="inner"><p>La inversa de la suma de todas las resistencias entre los dos fluidos: convecciones, pared y suciedad. Con pared delgada, \(1/U=1/h_F+1/h_C\), y manda el \(h\) más pequeño.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuándo se usa LMTD y cuándo ε-NTU?</summary><div class="inner"><p><b>LMTD</b> cuando se conocen las cuatro temperaturas y se busca el área. <b>ε-NTU</b> cuando se conoce el equipo y se buscan las temperaturas de salida, para no tener que iterar.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué es C_min?</summary><div class="inner"><p>El menor de los productos \(\dot mc_p\) de los dos fluidos. Es el que limita el calor máximo transferible: \(\dot Q_{max}=C_{min}\Delta T_{max}\).</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuánto vale c en un condensador?</summary><div class="inner"><p><b>Cero</b>, porque el fluido que cambia de fase mantiene su temperatura y su capacidad calorífica efectiva es infinita. Entonces \(\varepsilon=1-e^{-NTU}\) sea cual sea la disposición.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué significa un NTU alto?</summary><div class="inner"><p>Que el equipo es grande en relación con el caudal: la eficiencia se acerca a su límite. Por encima de \(NTU\approx3\)-5 la mejora que se obtiene al seguir aumentando el área es muy pequeña.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-10.html"><small>← Anterior</small>T10 · Radiación térmica</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

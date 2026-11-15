@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Conducción unidimensional permanente y aletas · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 3, Conducción unidimensional permanente y aletas">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Conducción</span><span class="sep">›</span><span>T3 · Conducción unidimensional permanente y aletas</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Conducción · Tema 3</p><h2 id="t3">Conducción unidimensional permanente y aletas</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> resolver paredes planas, cilindros y esferas con la analogía eléctrica, aplicar el concepto de radio crítico y calcular aletas con su eficiencia y su efectividad.</p><ul>
+<li>En régimen permanente y 1D, el calor que atraviesa capas en serie es el <b>mismo</b> en todas. Eso permite usar la <b>analogía eléctrica</b>: \(\dot Q=\Delta T/\sum R\).</li>
+<li>Cada capa es una resistencia; las convecciones de los extremos también. En paralelo (capas laterales) se combinan como resistencias eléctricas.</li>
+<li>El <b>radio crítico</b> es la trampa clásica del aislamiento de tubos: por debajo de él, <b>añadir aislante aumenta</b> el calor perdido, porque el área exterior crece más deprisa de lo que crece la resistencia de conducción.</li>
+<li>Una <b>aleta</b> aumenta el área de intercambio. Su temperatura cae a lo largo de la longitud, así que no toda ella es igual de útil: eso lo mide la <b>eficiencia</b> \(\eta_f\).</li>
+<li>La <b>efectividad</b> \(\varepsilon_f\) responde a otra pregunta: ¿compensa poner la aleta? Si sale menor que 2, no merece la pena.</li>
+<li>Una aleta es útil cuando \(h\) es <b>pequeño</b> (gases) y \(k\) grande. Poner aletas donde hay agua hirviendo no sirve de nada.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">R_cond</td><td>resistencia de conducción</td><td class="u">°C/W</td></tr><tr><td class="sym">R_conv</td><td>resistencia de convección</td><td class="u">1/(hA), °C/W</td></tr><tr><td class="sym">r_cr</td><td>radio crítico</td><td class="u">k/h (cilindro), 2k/h (esfera)</td></tr><tr><td class="sym">m</td><td>parámetro de la aleta</td><td class="u">√(hp/kA_c), 1/m</td></tr><tr><td class="sym">p</td><td>perímetro de la aleta</td><td class="u">m</td></tr><tr><td class="sym">A_c</td><td>sección transversal</td><td class="u">m²</td></tr><tr><td class="sym">η_f</td><td>eficiencia de la aleta</td><td class="u">tanh(mL_c)/(mL_c)</td></tr><tr><td class="sym">ε_f</td><td>efectividad de la aleta</td><td class="u">> 2 para compensar</td></tr><tr><td class="sym">η_0</td><td>eficiencia del conjunto</td><td class="u">aletas y pared</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - pared multicapa y analogia electrica</p><div data-sim="pared"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t3-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Resistencias de conducción:</b> plana \(R=\dfrac{L}{kA}\) · cilindro \(R=\dfrac{\ln(r_e/r_i)}{2\pi kL}\) · esfera \(R=\dfrac{1/r_i-1/r_e}{4\pi k}\) [°C/W].</li>
+<li><b>Resistencia de convección:</b> \(R=\dfrac{1}{hA_s}\); de radiación: \(R=\dfrac{1}{h_rA_s}\). En paralelo cuando actúan sobre la misma superficie.</li>
+<li><b>Radio crítico:</b> cilindro \(r_{cr}=k/h\) · esfera \(r_{cr}=2k/h\).</li>
+<li><b>Ecuación de la aleta:</b> \(\dfrac{d^2\theta}{dx^2}-m^2\theta=0\), con \(\theta=T-T_\infty\) y \(m=\sqrt{hp/(kA_c)}\).</li>
+<li><b>Aleta larga:</b> \(\theta=\theta_b e^{-mx}\), \(\dot Q=\sqrt{hpkA_c}\,\theta_b\).</li>
+<li><b>Aleta con extremo adiabático:</b> \(\theta=\theta_b\dfrac{\cosh m(L-x)}{\cosh mL}\), \(\dot Q=\sqrt{hpkA_c}\,\theta_b\tanh(mL)\), \(\eta_f=\dfrac{\tanh mL}{mL}\).</li>
+<li><b>Longitud corregida:</b> \(L_c=L+A_c/p\) (para aleta rectangular, \(L+t/2\)) para tener en cuenta el extremo.</li>
+<li><b>Eficiencia y efectividad:</b> \(\eta_f=\dfrac{\dot Q_{aleta}}{\dot Q_{max}}\), \(\varepsilon_f=\dfrac{\dot Q_{aleta}}{\dot Q_{sin\ aleta}}\).</li>
+<li><b>Conjunto aleta-pared:</b> \(\eta_0=1-\dfrac{nA_f}{A_{total}}(1-\eta_f)\), \(\dot Q=\eta_0hA_{total}(T_b-T_\infty)\).</li>
+</ul></div>
+<h3 id="t3-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Dibuja el <b>circuito térmico</b>: una resistencia por capa y por convección, en serie o en paralelo según corresponda.</li>
+<li>Calcula cada resistencia con su fórmula, cuidando el <b>área</b> correcta (en cilindros, la del radio correspondiente).</li>
+<li>Obtén \(\dot Q=\Delta T_{total}/\sum R\) con las temperaturas de los <b>extremos</b> del circuito.</li>
+<li>Para temperaturas intermedias, aplica \(\dot Q\) (que es el mismo) a la parte del circuito que corresponda.</li>
+<li>Con aletas: calcula \(m\) y \(mL_c\), luego \(\eta_f=\tanh(mL_c)/(mL_c)\), y por último \(\dot Q\) del conjunto con \(\eta_0\).</li>
+<li>Comprueba la <b>efectividad</b>: si \(\varepsilon_f<2\), la aleta no compensa.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Usar en el cilindro el <b>área equivocada</b>: la de convección exterior es \(2\pi r_eL\), no \(2\pi r_iL\).</li>
+<li>Olvidar el <b>radio crítico</b> y concluir que más aislante siempre aísla más. En cables finos es justo al revés.</li>
+<li>Calcular \(m\) con el perímetro o con el área transversal cambiados: \(p\) es el <b>perímetro mojado</b> y \(A_c\) la <b>sección</b>.</li>
+<li>No usar la <b>longitud corregida</b> cuando el extremo no es adiabático.</li>
+<li>Confundir eficiencia y efectividad. Una aleta puede tener \(\eta_f=0{,}95\) y no servir de nada (\(\varepsilon_f\approx1\)) si es demasiado corta.</li>
+<li>Aplicar \(\eta_0\) al área de las aletas en vez de al <b>área total</b> (aletas más pared desnuda).</li>
+</ul></div>
+<h3 id="t3-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una pared de <b>horno</b> está formada por 12 cm de ladrillo refractario (\(k=1{,}2\) W/m·K), 5 cm de aislante (\(k=0{,}05\) W/m·K) y 0,5 cm de chapa de acero (\(k=45\) W/m·K). Dentro hay gases a <b>800 °C</b> con \(h_i=30\) W/m²·K y fuera aire a <b>25 °C</b> con \(h_e=12\) W/m²·K. Calcula, por m² de pared, el flujo de calor y la temperatura de la chapa exterior.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1. Resistencias por m²</b> (\(A=1\) m²):</p>
+<div class="tw"><table><tr><th>Elemento</th><th>Expresión</th><th>R (°C/W)</th><th>% del total</th></tr>
+<tr><td>Convección interior</td><td>\(1/h_i\)</td><td>0,0333</td><td>2,8 %</td></tr>
+<tr><td>Ladrillo</td><td>\(0{,}12/1{,}2\)</td><td>0,1000</td><td>8,4 %</td></tr>
+<tr><td><b>Aislante</b></td><td>\(0{,}05/0{,}05\)</td><td><b>1,0000</b></td><td><b>81,9 %</b></td></tr>
+<tr><td>Acero</td><td>\(0{,}005/45\)</td><td>0,00011</td><td>0,01 %</td></tr>
+<tr><td>Convección exterior</td><td>\(1/h_e\)</td><td>0,0833</td><td>6,8 %</td></tr>
+<tr><td><b>Total</b></td><td></td><td><b>1,2167</b></td><td>100 %</td></tr></table></div>
+<p><b>2. Flujo de calor:</b></p>
+\[\dot q=\frac{800-25}{1{,}2167}=\boxed{637\ \mathrm{W/m^2}}\]
+<p><b>3. Temperatura de la chapa exterior.</b> El mismo flujo atraviesa la convección exterior:</p>
+\[T_{chapa}=T_\infty+\dot q\,R_{conv,e}=25+637\cdot0{,}0833=\boxed{78\ ^\circ\mathrm{C}}\]
+<p><b>4. Lectura.</b> El <b>aislante aporta el 82 %</b> de la resistencia con sólo 5 cm de espesor: duplicarlo reduciría la pérdida casi a la mitad, mientras que doblar el espesor de ladrillo apenas cambiaría nada. La chapa a 78 °C quema al tacto, lo que justifica poner una rejilla de protección o más aislante.</p>
+<div class="box trap"><h4>Si hubiera radiación</h4><p>Con una chapa a 78 °C y \(\varepsilon=0{,}8\), \(h_r\approx6\) W/m²·K, comparable a \(h_e=12\). La resistencia exterior real sería \(1/(12+6)=0{,}056\) y el flujo subiría a 670 W/m². <b>En aire, la radiación casi nunca es despreciable.</b></p></div></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué funciona la analogía eléctrica?</summary><div class="inner"><p>Porque en régimen permanente y 1D el calor es el mismo en todas las capas, igual que la corriente en un circuito serie: \(\dot Q\leftrightarrow I\), \(\Delta T\leftrightarrow V\), \(R_{th}\leftrightarrow R\).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Qué es el radio crítico y para qué sirve?</summary><div class="inner"><p>\(r_{cr}=k/h\) en cilindros: por debajo de él, añadir aislante <b>aumenta</b> el calor perdido, porque el área exterior crece más que la resistencia de conducción. Es lo que se aprovecha en el aislante de los cables eléctricos.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuándo merece la pena poner aletas?</summary><div class="inner"><p>Cuando \(h\) es <b>pequeño</b> (gases) y \(k\) grande (metales). La efectividad \(\varepsilon_f=\sqrt{kp/(hA_c)}\) debe superar 2.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué mide la eficiencia de una aleta?</summary><div class="inner"><p>La fracción del calor ideal que realmente evacua: \(\eta_f=\dot Q/\dot Q_{max}\), donde \(\dot Q_{max}\) sería el de una aleta toda ella a la temperatura de la base.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué se usa la longitud corregida?</summary><div class="inner"><p>Para incluir el calor que sale por el <b>extremo</b> de la aleta sin resolver el caso con convección en la punta: \(L_c=L+A_c/p\), que en una aleta rectangular vale \(L+t/2\).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué pasa si una aleta es demasiado larga?</summary><div class="inner"><p>Que la punta llega a la temperatura del fluido y <b>deja de disipar</b>: se gasta material sin ganar nada. En la práctica se busca \(mL\approx1\)-2.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · La ecuación general de la conducción</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Métodos numéricos en conducción</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

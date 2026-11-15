@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T8 Convección forzada en flujo interno · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 8, Convección forzada en flujo interno">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Convección, radiación e intercambiadores</span><span class="sep">›</span><span>T8 · Convección forzada en flujo interno</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 8</p><h2 id="t8">Convección forzada en flujo interno</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> distinguir el régimen y la región de entrada en conductos, elegir la correlación correcta y aplicar el balance de energía con temperatura de pared o flujo de calor constantes.</p><ul>
+<li>En un conducto el fluido está <b>confinado</b>: no hay velocidad «libre», sino <b>velocidad media</b>, y no hay \(T_\infty\), sino <b>temperatura media de mezcla</b> \(T_m\), que cambia a lo largo del tubo.</li>
+<li>La transición está en \(Re\approx2300\): por debajo, laminar; por encima de 10 000, turbulento desarrollado; en medio, zona de transición.</li>
+<li>Hay dos <b>longitudes de entrada</b>: la hidrodinámica y la térmica. En laminar la térmica es \(Pr\) veces mayor, así que en aceites el flujo puede no desarrollarse nunca.</li>
+<li>En la <b>región desarrollada laminar</b>, el Nusselt es constante: <b>4,36</b> con flujo de calor constante y <b>3,66</b> con temperatura de pared constante. No dependen de \(Re\) ni de \(Pr\).</li>
+<li>Las dos <b>condiciones de contorno</b> dan evoluciones distintas: con \(\dot q_s\) constante, \(T_m\) crece <b>linealmente</b>; con \(T_s\) constante, se acerca <b>exponencialmente</b> a \(T_s\).</li>
+<li>Para conductos no circulares se usa el <b>diámetro hidráulico</b> \(D_h=4A_c/P\).</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">D_h</td><td>diámetro hidráulico</td><td class="u">4A_c/P</td></tr><tr><td class="sym">v_m</td><td>velocidad media</td><td class="u">m/s</td></tr><tr><td class="sym">T_m</td><td>temperatura media de mezcla</td><td class="u">°C</td></tr><tr><td class="sym">L_h, L_t</td><td>longitudes de entrada</td><td class="u">hidrodinámica y térmica</td></tr><tr><td class="sym">Gz</td><td>número de Graetz</td><td class="u">Re·Pr·D_h/x</td></tr><tr><td class="sym">f</td><td>factor de fricción</td><td class="u">64/Re laminar</td></tr><tr><td class="sym">ΔT_lm</td><td>diferencia media logarítmica</td><td class="u">°C</td></tr><tr><td class="sym">ṁ</td><td>caudal másico</td><td class="u">kg/s</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - flujo interno: regimen, entrada y temperatura de salida</p><div data-sim="tubo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t8-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Reynolds:</b> \(Re=\dfrac{v_mD_h}{\nu}=\dfrac{4\dot m}{\pi D\mu}\) (tubo circular) · \(D_h=\dfrac{4A_c}{P}\).</li>
+<li><b>Longitudes de entrada (laminar):</b> \(L_h=0{,}05ReD\) · \(L_t=0{,}05RePrD\). En turbulento, \(L\approx10D\) para ambas.</li>
+<li><b>Laminar desarrollado:</b> \(Nu=4{,}36\) (\(\dot q_s\) cte) · \(Nu=3{,}66\) (\(T_s\) cte) · \(f=64/Re\).</li>
+<li><b>Laminar en entrada (Hausen):</b> \(Nu=3{,}66+\dfrac{0{,}065(D/L)RePr}{1+0{,}04\left[(D/L)RePr\right]^{2/3}}\).</li>
+<li><b>Laminar en entrada (Sieder-Tate):</b> \(Nu=1{,}86\left(\dfrac{D}{L}RePr\right)^{1/3}\left(\dfrac{\mu_b}{\mu_s}\right)^{0{,}14}\), para \((D/L)RePr>20\).</li>
+<li><b>Turbulento (Dittus-Boelter):</b> \(Nu=0{,}023Re^{0{,}8}Pr^n\), con \(n=0{,}4\) si se calienta y \(0{,}3\) si se enfría; \(Re>10^4\), \(0{,}7\le Pr\le160\), \(L/D>10\).</li>
+<li><b>Turbulento (Gnielinski):</b> \(Nu=\dfrac{(f/8)(Re-1000)Pr}{1+12{,}7(f/8)^{0{,}5}\left(Pr^{2/3}-1\right)}\), con \(f=(0{,}79\ln Re-1{,}64)^{-2}\).</li>
+<li><b>Balance de energía:</b> \(\dot Q=\dot mc_p(T_{sal}-T_{ent})\). Con \(\dot q_s\) cte: \(T_m(x)=T_{ent}+\dfrac{\dot q_sPx}{\dot mc_p}\). Con \(T_s\) cte: \(T_s-T_{sal}=(T_s-T_{ent})e^{-hA_s/(\dot mc_p)}\) y \(\dot Q=hA_s\Delta T_{lm}\).</li>
+<li><b>Caída de presión:</b> \(\Delta p=f\dfrac{L}{D}\dfrac{\rho v_m^2}{2}\).</li>
+</ul></div>
+<h3 id="t8-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Calcula \(Re\) con \(D_h\) y decide el <b>régimen</b>.</li>
+<li>Calcula las <b>longitudes de entrada</b> y compáralas con la longitud del tubo: deciden si hay que usar correlación de entrada o de flujo desarrollado.</li>
+<li>Identifica la <b>condición de contorno</b>: flujo de calor constante (resistencia eléctrica) o temperatura de pared constante (vapor condensando, baño).</li>
+<li>Elige la correlación, <b>comprueba su rango</b> y saca \(Nu\) y \(h\).</li>
+<li>Aplica el <b>balance de energía</b> para relacionar \(\dot Q\) con las temperaturas de entrada y salida.</li>
+<li>Si falta una longitud o una temperatura de salida, el sistema acopla \(h\) y el balance: resuélvelo o itera.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Evaluar las propiedades a la temperatura de pared en vez de a la <b>media de mezcla</b> \(T_m=(T_{ent}+T_{sal})/2\).</li>
+<li>Usar \(\Delta T=T_s-T_m\) con un \(T_m\) cualquiera cuando corresponde la <b>diferencia media logarítmica</b>.</li>
+<li>Olvidar comprobar si el flujo está <b>desarrollado</b>: en laminar con \(Pr\) alto, \(L_t\) puede medir metros.</li>
+<li>Aplicar Dittus-Boelter con \(Re<10^4\) o con \(L/D<10\).</li>
+<li>Usar \(Nu=3{,}66\) cuando la condición es de flujo de calor constante (donde vale 4,36) o al revés.</li>
+<li>En conductos no circulares, usar el diámetro geométrico en vez del <b>hidráulico</b>.</li>
+</ul></div>
+<h3 id="t8-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Se quieren calentar <b>0,05 kg/s</b> de aceite de motor desde <b>35 °C</b> hasta <b>45 °C</b> en un tubo de cobre de <b>1 cm</b> de diámetro interior, cuya superficie se mantiene a <b>100 °C</b> por vapor que condensa. Calcula la potencia necesaria, elige la correlación adecuada y determina la longitud de tubo. <span class="muted">(Examen de junio de 2019, problema 2)</span></p>
+<p class="muted">Propiedades del aceite a \(T_m=40\) °C: \(c_p=1964\) J/kg·K, \(\mu=0{,}210\) kg/m·s, \(k=0{,}1444\) W/m·K, \(Pr=2870\). A 100 °C, \(\mu_s=0{,}0172\) kg/m·s.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Potencia a transmitir:</b></p>
+\[\dot Q=\dot mc_p(T_{sal}-T_{ent})=0{,}05\cdot1964\cdot(45-35)=\boxed{982\ \mathrm{W}}\]
+<p><b>b) Elección de la correlación.</b> Calculamos el Reynolds:</p>
+\[Re=\frac{4\dot m}{\pi D\mu}=\frac{4\cdot0{,}05}{\pi\cdot0{,}01\cdot0{,}210}=\mathbf{30{,}3}\ \Rightarrow\ \textbf{laminar}\]
+<p>Con \(Pr=2870\), la longitud de entrada térmica sería \(L_t=0{,}05\cdot30{,}3\cdot2870\cdot0{,}01=43{,}5\) m: el flujo <b>nunca llega a desarrollarse</b>. Hay que usar la correlación de entrada de <b>Sieder-Tate</b>:</p>
+\[Nu=1{,}86\left(\frac{D}{L}RePr\right)^{1/3}\left(\frac{\mu_b}{\mu_s}\right)^{0{,}14}\]
+<p><b>c) Longitud necesaria.</b> Como la pared está a temperatura constante, el salto efectivo es la media logarítmica:</p>
+\[\Delta T_{lm}=\frac{(100-35)-(100-45)}{\ln\frac{100-35}{100-45}}=59{,}86\ ^\circ\mathrm{C}\]
+<p>La ecuación \(\dot Q=h\pi DL\,\Delta T_{lm}\) con \(h=Nu\,k/D\) depende de \(L\) por los dos lados, así que se resuelve iterando:</p>
+\[\boxed{L=1{,}72\ \mathrm{m}}\quad\Rightarrow\quad Nu=21{,}0,\quad h=304\ \mathrm{W/m^2K}\]
+<p><b>d) Comprobación del rango.</b></p>
+<ul><li>\(Re=30{,}3<2300\): laminar ✓</li>
+<li>\(\dfrac{D}{L}RePr=\dfrac{0{,}01}{1{,}72}\cdot30{,}3\cdot2870=506>20\) ✓</li>
+<li>\(\mu_b/\mu_s=0{,}210/0{,}0172=12{,}2\): algo por encima del límite recomendado de 9,75, lo que hay que <b>indicar</b> como limitación del resultado.</li></ul>
+<div class="box trap"><h4>La comprobación vale 0,3 puntos</h4><p>El enunciado pide explícitamente «confirme que se cumplen las condiciones impuestas en la correlación usada». Es el apartado más barato del examen y el que más gente deja en blanco.</p></div></div></details></div>
+<h3 id="t8-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Dónde está la transición en un conducto?</summary><div class="inner"><p>En \(Re\approx2300\). Entre 2300 y 10 000 hay transición, y por encima de 10 000, turbulento desarrollado.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuánto vale el Nusselt en laminar desarrollado?</summary><div class="inner"><p><b>4,36</b> con flujo de calor constante y <b>3,66</b> con temperatura de pared constante. No dependen ni de \(Re\) ni de \(Pr\).</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué en aceites el flujo casi nunca se desarrolla térmicamente?</summary><div class="inner"><p>Porque \(L_t=0{,}05RePrD\) y el Prandtl de un aceite puede valer miles: la longitud de entrada térmica sale de decenas de metros.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo evoluciona la temperatura con flujo de calor constante?</summary><div class="inner"><p><b>Linealmente</b>: \(T_m(x)=T_{ent}+\dot q_sPx/(\dot mc_p)\). Con temperatura de pared constante, se acerca exponencialmente a \(T_s\).</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuándo se usa la diferencia media logarítmica en un tubo?</summary><div class="inner"><p>Cuando la <b>temperatura de pared es constante</b> y la del fluido varía a lo largo del tubo: \(\dot Q=hA_s\Delta T_{lm}\).</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué es el diámetro hidráulico?</summary><div class="inner"><p>\(D_h=4A_c/P\), la longitud característica que permite usar las correlaciones de tubo circular en conductos de cualquier sección.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Convección forzada en flujo externo</a><a class="nx" href="tema-09.html"><small>Siguiente →</small>T9 · Convección natural</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T6 Introducción a la convección: capa límite y números adimensionales · Transmisión del Calor · Guía para aprobar</title>
+<meta name="description" content="Transmisión del Calor (UPCT, GIEyA): tema 6, Introducción a la convección: capa límite y números adimensionales">
+<meta name="theme-color" content="#a8243c">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias de los once temas, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Transmisión del Calor</a><span class="sep">›</span><span>Convección, radiación e intercambiadores</span><span class="sep">›</span><span>T6 · Introducción a la convección: capa límite y números adimensionales</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">Conducción</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Los tres mecanismos y el balance de energía</a><a href="tema-02.html" style="--tc:var(--c3)">T2 La ecuación general de la conducción</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Conducción unidimensional permanente y aletas</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Métodos numéricos en conducción</a><a href="tema-05.html" style="--tc:var(--c6)">T5 Conducción en régimen transitorio</a><div class="grp">Convección, radiación e intercambiadores</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Introducción a la convección: capa límite y números adimensionales</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Convección forzada en flujo externo</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Convección forzada en flujo interno</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Convección natural</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Radiación térmica</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Intercambiadores de calor</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y seminarios</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 6</p><h2 id="t6">Introducción a la convección: capa límite y números adimensionales</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender la capa límite hidrodinámica y la térmica, manejar los números de Reynolds, Prandtl y Nusselt y saber de dónde salen las correlaciones.</p><ul>
+<li>Junto a una pared, la velocidad pasa de cero (no deslizamiento) al valor libre en un espesor muy pequeño: la <b>capa límite hidrodinámica</b> \(\delta\).</li>
+<li>Lo mismo ocurre con la temperatura: la <b>capa límite térmica</b> \(\delta_t\). Todo el salto térmico está ahí dentro.</li>
+<li><b>En la pared el fluido está quieto</b>, así que allí el calor se transmite por <b>conducción pura</b>. De ahí sale la definición de \(h\): \(h=-k_f(\partial T/\partial y)_{y=0}/(T_s-T_\infty)\).</li>
+<li>El <b>número de Prandtl</b> dice cuál de las dos capas es más gruesa: \(\delta/\delta_t\approx Pr^{1/3}\). En aceites \(Pr\gg1\); en metales líquidos \(Pr\ll1\); en gases \(Pr\approx0{,}7\).</li>
+<li>El <b>número de Reynolds</b> decide el régimen y, con él, la correlación que hay que usar.</li>
+<li>El <b>número de Nusselt</b> es el resultado: \(Nu=hL_c/k_f\), el calor por convección dividido entre el que habría por conducción pura en el fluido. \(Nu=1\) significa conducción pura.</li>
+<li>Todas las correlaciones tienen la forma \(Nu=f(Re,Pr)\) y vienen con un <b>rango de validez</b> que <b>hay que comprobar</b>.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">δ</td><td>espesor de capa límite hidrodinámica</td><td class="u">m</td></tr><tr><td class="sym">δ_t</td><td>espesor de capa límite térmica</td><td class="u">m</td></tr><tr><td class="sym">Re</td><td>número de Reynolds</td><td class="u">U L/ν</td></tr><tr><td class="sym">Pr</td><td>número de Prandtl</td><td class="u">ν/α, propiedad del fluido</td></tr><tr><td class="sym">Nu</td><td>número de Nusselt</td><td class="u">hL/k_f (k del fluido)</td></tr><tr><td class="sym">ν</td><td>viscosidad cinemática</td><td class="u">m²/s</td></tr><tr><td class="sym">τ_s</td><td>esfuerzo cortante en la pared</td><td class="u">N/m²</td></tr><tr><td class="sym">T_f</td><td>temperatura de película</td><td class="u">(T_s+T∞)/2</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - capa limite hidrodinamica y termica</p><div data-sim="capalimite"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
+<h3 id="t6-formulas">Fórmulas que hay que saber localizar</h3>
+<div class="box key"><ul>
+<li><b>Definición de h:</b> \(h=\dfrac{-k_f\left.\partial T/\partial y\right|_{y=0}}{T_s-T_\infty}\) · <b>Newton:</b> \(\dot Q=hA_s(T_s-T_\infty)\).</li>
+<li><b>Reynolds:</b> \(Re=\dfrac{U_\infty L_c}{\nu}=\dfrac{\rho U_\infty L_c}{\mu}\) — inercia frente a viscosidad.</li>
+<li><b>Prandtl:</b> \(Pr=\dfrac{\nu}{\alpha}=\dfrac{c_p\mu}{k}\) — difusividad de cantidad de movimiento frente a la térmica.</li>
+<li><b>Nusselt:</b> \(Nu=\dfrac{hL_c}{k_f}\) — gradiente adimensional de temperatura en la pared.</li>
+<li><b>Grashof:</b> \(Gr=\dfrac{g\beta(T_s-T_\infty)L_c^3}{\nu^2}\) · <b>Rayleigh:</b> \(Ra=Gr\cdot Pr\) — para convección natural.</li>
+<li><b>Coeficiente de fricción:</b> \(C_f=\dfrac{\tau_s}{\rho U_\infty^2/2}\), con \(\tau_s=\mu\left.\partial u/\partial y\right|_{y=0}\).</li>
+<li><b>Relación entre capas:</b> \(\delta/\delta_t\approx Pr^{1/3}\); en gases ambas son casi iguales.</li>
+<li><b>Temperatura de película:</b> \(T_f=\dfrac{T_s+T_\infty}{2}\) — la mayoría de las correlaciones piden evaluar las propiedades ahí.</li>
+</ul></div>
+<h3 id="t6-metodo">Método paso a paso</h3>
+<ol class="steps"><li>Identifica la <b>geometría</b> y si la convección es forzada o natural.</li>
+<li>Calcula la <b>temperatura de película</b> y saca las propiedades del fluido de tabla a esa temperatura.</li>
+<li>Calcula \(Re\) (o \(Ra\) en natural) y decide el <b>régimen</b>.</li>
+<li>Elige la <b>correlación</b> adecuada y comprueba su rango de validez: es un apartado que puntúa en el examen.</li>
+<li>Obtén \(Nu\), de ahí \(h=Nu\,k_f/L_c\) y por último \(\dot Q=hA_s\Delta T\).</li>
+<li>Comprueba que \(h\) cae en el <b>orden de magnitud</b> esperable para ese fluido y ese régimen.</li></ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li><b>Evaluar las propiedades a la temperatura equivocada.</b> Casi todas las correlaciones de flujo externo piden \(T_f\); las de flujo interno, la temperatura media de mezcla.</li>
+<li>Usar la longitud característica que no es: en placa plana es \(x\) o \(L\); en cilindro, el <b>diámetro</b>; en flujo interno, el diámetro hidráulico.</li>
+<li>Aplicar una correlación <b>fuera de su rango</b> sin decirlo. El enunciado suele pedir explícitamente que se compruebe.</li>
+<li>Confundir \(Nu\) con \(Bi\): se parecen, pero en Nusselt la \(k\) es la del <b>fluido</b> y en Biot la del <b>sólido</b>.</li>
+<li>Usar el \(Nu\) local donde hace falta el medio (o al revés). El local da \(h_x\) en un punto; el medio, el \(h\) de toda la superficie.</li>
+<li>Olvidar que \(h\) <b>disminuye</b> al avanzar en la placa: la capa límite se engrosa y aísla.</li>
+</ul></div>
+<h3 id="t6-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Sobre una placa plana de <b>1,5 m</b> de longitud y <b>0,6 m</b> de ancho incide aire a <b>20 °C</b> paralelo a la superficie. Las propiedades medias en la capa límite son \(\rho=1{,}077\) kg/m³, \(\mu=2{,}03\cdot10^{-5}\) kg/m·s, \(k=0{,}028328\) W/m·K y \(Pr=0{,}70184\). a) Calcula la velocidad \(U_\infty\) si a <b>1 m</b> del borde de ataque la capa límite térmica tiene <b>12 mm</b> de espesor. b) Calcula la temperatura de la placa si libera <b>400 W</b> por una sola cara. <span class="muted">(Examen de junio de 2019, cuestión 3)</span></p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>a) Velocidad.</b> De la expresión del espesor térmico:</p>
+\[\delta_t=\frac{5x}{Pr^{1/3}Re_x^{1/2}}\ \Rightarrow\ Re_x=\left(\frac{5x}{\delta_tPr^{1/3}}\right)^2=\left(\frac{5\cdot1}{0{,}012\cdot0{,}70184^{1/3}}\right)^2=2{,}20\cdot10^5\]
+\[\nu=\frac{\mu}{\rho}=\frac{2{,}03\cdot10^{-5}}{1{,}077}=1{,}885\cdot10^{-5}\ \mathrm{m^2/s}\]
+\[U_\infty=\frac{Re_x\,\nu}{x}=\frac{2{,}20\cdot10^5\cdot1{,}885\cdot10^{-5}}{1}=\boxed{4{,}14\ \mathrm{m/s}}\]
+<p><b>b) Temperatura de la placa.</b> Primero el Reynolds en toda la longitud, para confirmar el régimen:</p>
+\[Re_L=\frac{4{,}14\cdot1{,}5}{1{,}885\cdot10^{-5}}=3{,}30\cdot10^5<5\cdot10^5\ \Rightarrow\ \textbf{laminar en toda la placa}\ \checkmark\]
+\[Nu_L=0{,}664\,Pr^{1/3}Re_L^{1/2}=0{,}664\cdot0{,}8888\cdot574{,}2=338{,}8\]
+\[h=\frac{Nu_Lk}{L}=\frac{338{,}8\cdot0{,}028328}{1{,}5}=6{,}40\ \mathrm{W/m^2K}\]
+<p>Con una sola cara en contacto, \(A=1{,}5\cdot0{,}6=0{,}9\) m²:</p>
+\[T_s=T_\infty+\frac{\dot Q}{hA}=20+\frac{400}{6{,}40\cdot0{,}9}=\boxed{89{,}5\ ^\circ\mathrm{C}}\]
+<div class="box trap"><h4>Las dos comprobaciones que puntúan</h4><p>Que \(Re_L<5\cdot10^5\) (laminar, que es lo que exige la correlación) y que \(Pr>0{,}6\). Si el enunciado da los datos «para \(Re_L<5\cdot10^5\)», está pidiendo que lo verifiques, no sólo que lo supongas.</p></div></div></details></div>
+<h3 id="t6-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué existe la capa límite?</summary><div class="inner"><p>Por la condición de <b>no deslizamiento</b>: el fluido en contacto con la pared está quieto, y la velocidad tiene que recuperarse hasta \(U_\infty\) en una distancia pequeña.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Por qué en la pared el calor se transmite por conducción pura?</summary><div class="inner"><p>Porque allí la velocidad del fluido es <b>cero</b>: no hay arrastre, sólo conducción. De ahí sale la definición de \(h\) a partir del gradiente de temperatura en la pared.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué dice el número de Prandtl?</summary><div class="inner"><p>Cuál de las dos capas límite es más gruesa: \(\delta/\delta_t\approx Pr^{1/3}\). En aceites (\(Pr\gg1\)) la hidrodinámica es mucho mayor; en metales líquidos, al revés.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué diferencia hay entre Nusselt y Biot?</summary><div class="inner"><p>Las dos son \(hL/k\), pero en <b>Nusselt</b> la \(k\) es la del <b>fluido</b> y mide cuánto mejora la convección a la conducción; en <b>Biot</b> es la del <b>sólido</b> y compara resistencias.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿A qué temperatura se evalúan las propiedades?</summary><div class="inner"><p>En flujo externo, a la <b>temperatura de película</b> \(T_f=(T_s+T_\infty)/2\). En flujo interno, a la temperatura media de mezcla del fluido.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué significa Nu = 1?</summary><div class="inner"><p>Que la convección no aporta nada sobre la conducción pura en el fluido: es el caso de un fluido en reposo.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · Conducción en régimen transitorio</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Convección forzada en flujo externo</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Transmisión del Calor (UPCT, GIEyA) · Datos tomados del curso <time datetime="2022-09">2022/23</time> (transparencias, formulario oficial, prácticas, seminarios y exámenes de 2012 a 2022) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
