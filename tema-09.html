@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 9</p><h2 id="t9">Convección natural</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular el coeficiente de convección cuando el movimiento lo provoca la propia diferencia de densidades, con los números de Grashof y Rayleigh, y dimensionar una matriz de aletas.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> calcular el coeficiente de convección cuando el movimiento lo provoca la propia diferencia de densidades, con los números de Grashof y Rayleigh, y dimensionar una matriz de aletas.</p><ul>
 <li>Sin ventilador ni bomba, el fluido se mueve porque al calentarse <b>se dilata y asciende</b>. El motor es la gravedad combinada con la diferencia de densidades.</li>
 <li>El <b>número de Grashof</b> sustituye aquí al Reynolds: compara las fuerzas de flotación con las viscosas.</li>
 <li>El que manda en las correlaciones es el <b>número de Rayleigh</b>, \(Ra=Gr\cdot Pr\). La transición a turbulento en placa vertical está en \(Ra\approx10^9\).</li>
@@ -57,9 +97,9 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Las diferencias de densidad mueven el fluido</div><svg viewBox="0 0 560 262" role="img" aria-label="Convección natural" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="60" y="50" width="20" height="130" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.4"/><path d="M90,170 C110,130 110,100 102,60" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="102" y1="64" x2="101.5" y2="62.1" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="100,56 104.3,61.5 98.8,62.9" fill="var(--c6,#2c8a52)"/><path d="M104,170 C124,130 124,100 116,60" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="116" y1="64" x2="115.5" y2="62.1" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="114,56 118.3,61.5 112.8,62.9" fill="var(--c6,#2c8a52)"/><path d="M118,170 C138,130 138,100 130,60" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="130" y1="64" x2="129.5" y2="62.1" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="128,56 132.3,61.5 126.8,62.9" fill="var(--c6,#2c8a52)"/><text x="70" y="198" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">pared caliente</text><text x="240" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">El fluido caliente</text><text x="240" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">sube por flotación y</text><text x="240" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">arrastra al frío.</text><text x="240" y="133" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Gr = g·β·ΔT·L³/ν²</text><text x="240" y="155" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Ra = Gr·Pr</text></svg><figcaption>Sin ventilador, el calentamiento local reduce la densidad y provoca ascenso; el número de Rayleigh decide si el movimiento es laminar o turbulento.</figcaption></figure><figure class="ill"><div class="ill-t">El flujo ascendente acaba haciéndose turbulento</div><svg viewBox="0 0 560 262" role="img" aria-label="Flujo laminar y turbulento en pared vertical" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="60" y="40" width="14" height="150" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.4"/><path d="M78,190 Q84,160 88,130 Q96,110 100,100" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M100,100 q10,-10 6,-20 q16,-6 6,-20 q16,-6 4,-20" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="150" y="170" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="start" font-weight="700" opacity="1">laminar</text><text x="150" y="70" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="start" font-weight="700" opacity="1">turbulento</text><text x="24" y="224" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">transición hacia Ra ≈ 10⁹</text></svg><figcaption>Conforme la capa límite crece hacia arriba el movimiento se desordena; el valor crítico del número de Rayleigh marca la transición.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Gr</td><td>número de Grashof</td><td class="u">gβΔTL³/ν²</td></tr><tr><td class="sym">Ra</td><td>número de Rayleigh</td><td class="u">Gr·Pr</td></tr><tr><td class="sym">β</td><td>coef. de expansión volumétrica</td><td class="u">1/T para gases, 1/K</td></tr><tr><td class="sym">S_opt</td><td>separación óptima de aletas</td><td class="u">2,714 L/Ra^0,25</td></tr><tr><td class="sym">L_c</td><td>longitud característica</td><td class="u">altura, A_s/P o D</td></tr><tr><td class="sym">k_ef</td><td>conductividad efectiva</td><td class="u">k·Nu en recintos</td></tr><tr><td class="sym">H/L</td><td>relación de aspecto</td><td class="u">recintos cerrados</td></tr><tr><td class="sym">θ</td><td>ángulo de inclinación</td><td class="u">recintos inclinados</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - conveccion natural frente a radiacion</p><div data-sim="natural"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué sube el aire caliente</p><p>En la convección natural nadie sopla el fluido: se mueve solo porque el fluido caliente junto a la pared es menos denso y <b>flota</b>. La fuerza que lo mueve es el empuje \(\rho g\beta\Delta T\), con \(\beta\) el coeficiente de expansión térmica (para un gas ideal, \(\beta=1/T\) con \(T\) en kelvin). El número adimensional que decide todo es el de <b>Rayleigh</b>: \(Ra=\dfrac{g\beta\Delta TL^3}{\nu^2}Pr\): la relación entre el empuje y las fuerzas de frenado (viscosidad y difusión térmica). Con \(Ra<10^9\) el flujo en una placa vertical es laminar; por encima, turbulento.</p><p class="ft">Correlaciones: geometría y orientación mandan</p><p>La receta es la misma que en forzada, cambiando \(Re\) por \(Ra\): propiedades a \(T_f\), \(L_c\) según la geometría (altura de la placa vertical; <b>\(A_s/P\)</b> en placa horizontal; diámetro en cilindro horizontal), \(Ra\), correlación y \(h=Nu\,k/L_c\). <b>Placa vertical</b>: Churchill–Chu (todo el rango). <b>Placa horizontal</b>: caliente hacia arriba (\(Nu=0{,}54Ra^{1/4}\) o \(0{,}15Ra^{1/3}\)) intercambia mucho mejor que caliente hacia abajo (\(0{,}27Ra^{1/4}\)), porque el fluido caliente puede subir libremente. <b>Cilindro horizontal</b>: Churchill–Chu para cilindros. Entre aletas verticales hay una separación óptima \(S_{opt}=2{,}714L/Ra_L^{1/4}\): muy juntas se frenan, muy separadas se pierde superficie.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué sube el aire caliente</p><p class="lede">En la convección natural nadie sopla el fluido: se mueve solo porque el fluido caliente junto a la pared es menos denso y <b>flota</b>. La fuerza que lo mueve es el empuje \(\rho g\beta\Delta T\), con \(\beta\) el coeficiente de expansión térmica (para un gas ideal, \(\beta=1/T\) con \(T\) en kelvin). El número adimensional que decide todo es el de <b>Rayleigh</b>: \(Ra=\dfrac{g\beta\Delta TL^3}{\nu^2}Pr\): la relación entre el empuje y las fuerzas de frenado (viscosidad y difusión térmica). Con \(Ra<10^9\) el flujo en una placa vertical es laminar; por encima, turbulento.</p><p class="ft">Correlaciones: geometría y orientación mandan</p><p>La receta es la misma que en forzada, cambiando \(Re\) por \(Ra\): propiedades a \(T_f\), \(L_c\) según la geometría (altura de la placa vertical; <b>\(A_s/P\)</b> en placa horizontal; diámetro en cilindro horizontal), \(Ra\), correlación y \(h=Nu\,k/L_c\). <b>Placa vertical</b>: Churchill–Chu (todo el rango). <b>Placa horizontal</b>: caliente hacia arriba (\(Nu=0{,}54Ra^{1/4}\) o \(0{,}15Ra^{1/3}\)) intercambia mucho mejor que caliente hacia abajo (\(0{,}27Ra^{1/4}\)), porque el fluido caliente puede subir libremente. <b>Cilindro horizontal</b>: Churchill–Chu para cilindros. Entre aletas verticales hay una separación óptima \(S_{opt}=2{,}714L/Ra_L^{1/4}\): muy juntas se frenan, muy separadas se pierde superficie.</p>
 <figure class="fig"><p class="ft">Convección natural en una placa vertical</p><div data-sim="natural"></div><figcaption>Aumenta la diferencia de temperatura: sube Ra, engrosa la capa límite y crece h (pero poco).</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Por qué se mueve el fluido</h4>
+<h4><span class="hn">1</span>Por qué se mueve el fluido</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en convección natural, el fluido se mueve porque las zonas calientes son menos densas y suben. La fuerza que lo mueve es el empuje de flotación, no una bomba.</div>
 <div class="eqd">\[\mathrm{Gr}=\frac{g\,\beta\,\Delta T\,L^3}{\nu^2}\qquad\mathrm{Ra}=\mathrm{Gr}\cdot\mathrm{Pr}\]</div>
 <ul><li>\(\beta\) es el coeficiente de expansión térmica. Para gases ideales, \(\beta=1/T\).</li><li>El número de Rayleigh decide si la convección es laminar o turbulenta.</li></ul>

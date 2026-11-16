@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">Conducción · Tema 2</p><h2 id="t2">La ecuación general de la conducción</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> escribir la ecuación general de la conducción en cartesianas, cilíndricas y esféricas, simplificarla justificando las hipótesis y plantear las condiciones de contorno.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> escribir la ecuación general de la conducción en cartesianas, cilíndricas y esféricas, simplificarla justificando las hipótesis y plantear las condiciones de contorno.</p><ul>
 <li>La ecuación general sale de un <b>balance de energía en un volumen diferencial</b>: lo que entra menos lo que sale más lo que se genera es lo que se acumula.</li>
 <li>Casi todo el trabajo de examen consiste en <b>tachar términos</b>: régimen permanente anula \(\partial T/\partial t\), la unidimensionalidad anula dos derivadas espaciales y la ausencia de generación anula \(\dot q_g\).</li>
 <li><b>Cada hipótesis hay que justificarla</b>, no sólo enunciarla: el enunciado del examen lo pide explícitamente y puntúa aparte.</li>
@@ -57,13 +97,13 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Balance sobre un cubito de material</div><svg viewBox="0 0 560 262" role="img" aria-label="Elemento diferencial" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><polygon points="80,90 180,90 180,170 80,170" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2.4" opacity="0.1" stroke-linejoin="round" stroke-linecap="round"/><polygon points="80,90 110,66 210,66 180,90" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2.2" opacity="0.18" stroke-linejoin="round" stroke-linecap="round"/><polygon points="180,90 210,66 210,146 180,170" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2.2" opacity="0.06" stroke-linejoin="round" stroke-linecap="round"/><line x1="40" y1="130" x2="69.9" y2="130" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="78,130 69.8,133.7 69.8,126.3" fill="var(--warn,#b8730c)"/><line x1="182" y1="130" x2="213.9" y2="130" stroke="var(--warn,#b8730c)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="222,130 213.8,133.7 213.8,126.3" fill="var(--warn,#b8730c)"/><text x="56" y="120" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">q_x</text><text x="222" y="118" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="start" font-weight="700" opacity="1">q_x+dx</text><text x="24" y="214" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">∂/∂x(k ∂T/∂x) + … + q̇ = ρ·c·∂T/∂t</text></svg><figcaption>Aplicar el balance de energía a un elemento diferencial y la ley de Fourier da la ecuación del calor.</figcaption></figure><figure class="ill"><div class="ill-t">Cuatro tipos de frontera, cuatro ecuaciones</div><svg viewBox="0 0 560 262" role="img" aria-label="Condiciones de contorno" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="44" width="260" height="34" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.08"/><text x="36" y="58" fill="var(--tc,var(--accent))" font-size="12" text-anchor="start" font-weight="700" opacity="1">Temperatura fija</text><text x="36" y="72" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="500" opacity="1">T(0) = T_s</text><rect x="24" y="86" width="260" height="34" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.6" opacity="0.08"/><text x="36" y="100" fill="var(--c5,#c43d63)" font-size="12" text-anchor="start" font-weight="700" opacity="1">Flujo fijo</text><text x="36" y="114" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="500" opacity="1">−k·dT/dx = q″</text><rect x="24" y="128" width="260" height="34" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="0.08"/><text x="36" y="142" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="start" font-weight="700" opacity="1">Convección</text><text x="36" y="156" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="500" opacity="1">−k·dT/dx = h(T − T∞)</text><rect x="24" y="170" width="260" height="34" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="0.08"/><text x="36" y="184" fill="var(--warn,#b8730c)" font-size="12" text-anchor="start" font-weight="700" opacity="1">Aislado</text><text x="36" y="198" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="500" opacity="1">dT/dx = 0</text></svg><figcaption>Cada superficie se describe con una de estas condiciones, que junto con la ecuación del calor determinan la solución.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">α</td><td>difusividad térmica</td><td class="u">k/(ρc_p), m²/s</td></tr><tr><td class="sym">ρ</td><td>densidad</td><td class="u">kg/m³</td></tr><tr><td class="sym">c_p</td><td>calor específico</td><td class="u">J/kg·K</td></tr><tr><td class="sym">q̇_g</td><td>generación interna</td><td class="u">W/m³</td></tr><tr><td class="sym">∇²T</td><td>laplaciano de la temperatura</td><td class="u">K/m²</td></tr><tr><td class="sym">C.C.</td><td>condición de contorno</td><td class="u">Dirichlet, Neumann o Robin</td></tr><tr><td class="sym">k(T)</td><td>conductividad variable</td><td class="u">no sale de la derivada</td></tr><tr><td class="sym">L</td><td>espesor de la pared</td><td class="u">m</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - que terminos sobreviven en cada caso</p><div data-sim="ecuacion"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La ecuación del calor es un balance en un cubito</p><p>Si haces un balance de energía en un cubito de material, el calor neto que entra por conducción más lo que se genera dentro es lo que se acumula: \(\nabla\cdot(k\nabla T)+\dot q_g=\rho c\dfrac{\partial T}{\partial t}\). Con \(k\) constante: \(\nabla^2T+\dfrac{\dot q_g}{k}=\dfrac1\alpha\dfrac{\partial T}{\partial t}\). La <b>difusividad térmica</b> \(\alpha=\dfrac{k}{\rho c_p}\) (m²/s) mide cómo de rápido «se entera» el interior de lo que pasa fuera: el cobre (\(10^{-4}\)) es rapidísimo; el acero (\(10^{-5}\)), unas diez veces más lento.</p><p class="ft">Cómo resolver: simplificar, integrar, condiciones de contorno</p><p>Receta única: <b>(1)</b> elige el sistema de coordenadas que encaja con la geometría (cartesianas, cilíndricas, esféricas); <b>(2)</b> tacha términos: ¿permanente? (\(\partial/\partial t=0\)) ¿unidimensional? ¿hay generación?; <b>(3)</b> integra la EDO resultante; <b>(4)</b> determina las constantes con las <b>condiciones de contorno</b>: temperatura fija (Dirichlet), flujo fijo o aislado (Neumann: \(dT/dx=0\)) o convección (\(-k\,dT/dx=h(T-T_\infty)\)). Con generación uniforme los perfiles son <b>parábolas</b>: en una placa \(T_0-T_s=\dfrac{\dot q_gL^2}{2k}\); en un cilindro, \(\dfrac{\dot q_gr_0^2}{4k}\); en una esfera, \(\dfrac{\dot q_gr_0^2}{6k}\).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La ecuación del calor es un balance en un cubito</p><p class="lede">Si haces un balance de energía en un cubito de material, el calor neto que entra por conducción más lo que se genera dentro es lo que se acumula: \(\nabla\cdot(k\nabla T)+\dot q_g=\rho c\dfrac{\partial T}{\partial t}\). Con \(k\) constante: \(\nabla^2T+\dfrac{\dot q_g}{k}=\dfrac1\alpha\dfrac{\partial T}{\partial t}\). La <b>difusividad térmica</b> \(\alpha=\dfrac{k}{\rho c_p}\) (m²/s) mide cómo de rápido «se entera» el interior de lo que pasa fuera: el cobre (\(10^{-4}\)) es rapidísimo; el acero (\(10^{-5}\)), unas diez veces más lento.</p><p class="ft">Cómo resolver: simplificar, integrar, condiciones de contorno</p><p>Receta única: <b>(1)</b> elige el sistema de coordenadas que encaja con la geometría (cartesianas, cilíndricas, esféricas); <b>(2)</b> tacha términos: ¿permanente? (\(\partial/\partial t=0\)) ¿unidimensional? ¿hay generación?; <b>(3)</b> integra la EDO resultante; <b>(4)</b> determina las constantes con las <b>condiciones de contorno</b>: temperatura fija (Dirichlet), flujo fijo o aislado (Neumann: \(dT/dx=0\)) o convección (\(-k\,dT/dx=h(T-T_\infty)\)). Con generación uniforme los perfiles son <b>parábolas</b>: en una placa \(T_0-T_s=\dfrac{\dot q_gL^2}{2k}\); en un cilindro, \(\dfrac{\dot q_gr_0^2}{4k}\); en una esfera, \(\dfrac{\dot q_gr_0^2}{6k}\).</p>
 <figure class="fig"><p class="ft">Ecuación del calor</p><div data-sim="ecuacion"></div><figcaption>Cambia las condiciones de contorno y la generación: el perfil de temperatura cambia de forma.</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t2-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Ley de Fourier y conductividad</h4>
+<h4><span class="hn">1</span>Ley de Fourier y conductividad</h4>
 <div class="box key deepnote"><b>Idea clave.</b> el flujo de calor es proporcional al gradiente de temperatura, en sentido contrario. El calor va de caliente a frío.</div>
 <div class="eqd">\[\vec q=-k\,\nabla T\]</div>
 <ul><li><b>k</b>: conductividad térmica (W/m·K). Los metales conducen mucho; los gases y los aislantes, poco.</li><li><b>Difusividad térmica</b> \(\alpha=k/(\rho c_p)\): cuánto tarda un material en igualar su temperatura.</li></ul>
-<h4>2. Ecuación general de la conducción</h4>
+<h4><span class="hn">2</span>Ecuación general de la conducción</h4>
 <div class="eqd">\[\rho c_p\frac{\partial T}{\partial t}=\nabla\cdot(k\nabla T)+\dot q_{gen}\]</div>
 <ol class="pasos"><li>Plantea el balance de energía en un volumen diferencial.</li><li>Sustituye la ley de Fourier.</li><li>Simplifica con las hipótesis del problema: régimen permanente, sin generación, \(k\) constante.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> Antes de resolver, anota las hipótesis. Cada simplificación elimina términos de la ecuación.</div>

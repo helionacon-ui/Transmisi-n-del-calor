@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 8</p><h2 id="t8">Convección forzada en flujo interno</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> distinguir el régimen y la región de entrada en conductos, elegir la correlación correcta y aplicar el balance de energía con temperatura de pared o flujo de calor constantes.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> distinguir el régimen y la región de entrada en conductos, elegir la correlación correcta y aplicar el balance de energía con temperatura de pared o flujo de calor constantes.</p><ul>
 <li>En un conducto el fluido está <b>confinado</b>: no hay velocidad «libre», sino <b>velocidad media</b>, y no hay \(T_\infty\), sino <b>temperatura media de mezcla</b> \(T_m\), que cambia a lo largo del tubo.</li>
 <li>La transición está en \(Re\approx2300\): por debajo, laminar; por encima de 10 000, turbulento desarrollado; en medio, zona de transición.</li>
 <li>Hay dos <b>longitudes de entrada</b>: la hidrodinámica y la térmica. En laminar la térmica es \(Pr\) veces mayor, así que en aceites el flujo puede no desarrollarse nunca.</li>
@@ -57,9 +97,9 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Desarrollo del flujo y temperatura media</div><svg viewBox="0 0 560 262" role="img" aria-label="Flujo en tubo" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="30" y1="70" x2="270" y2="70" stroke="var(--fg)" stroke-width="3" opacity="1" stroke-linecap="round"/><line x1="30" y1="170" x2="270" y2="170" stroke="var(--fg)" stroke-width="3" opacity="1" stroke-linecap="round"/><path d="M40,70 L42.5,77.6 L45,80.7 L47.5,83.1 L50,85.2 L52.5,87 L55,88.6 L57.5,90.1 L60,91.5 L62.5,92.8 L65,94 L67.5,95.2 L70,96.3 L72.5,97.4 L75,98.4 L77.5,99.4 L80,100.4 L82.5,101.3 L85,102.2 L87.5,103.1 L90,103.9 L92.5,104.8 L95,105.6 L97.5,106.4 L100,107.2 L102.5,107.9 L105,108.7 L107.5,109.4 L110,110.2 L112.5,110.9 L115,111.6 L117.5,112.3 L120,112.9 L122.5,113.6 L125,114.3 L127.5,114.9 L130,115.5 L132.5,116.2 L135,116.8 L137.5,117.4 L140,118" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M40,170 L42.5,162.4 L45,159.3 L47.5,156.9 L50,154.8 L52.5,153 L55,151.4 L57.5,149.9 L60,148.5 L62.5,147.2 L65,146 L67.5,144.8 L70,143.7 L72.5,142.6 L75,141.6 L77.5,140.6 L80,139.6 L82.5,138.7 L85,137.8 L87.5,136.9 L90,136.1 L92.5,135.2 L95,134.4 L97.5,133.6 L100,132.8 L102.5,132.1 L105,131.3 L107.5,130.6 L110,129.8 L112.5,129.1 L115,128.4 L117.5,127.7 L120,127.1 L122.5,126.4 L125,125.7 L127.5,125.1 L130,124.5 L132.5,123.8 L135,123.2 L137.5,122.6 L140,122" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="40" y="192" fill="var(--muted)" font-size="11" text-anchor="start" font-weight="700" opacity="1">zona de entrada</text><text x="230" y="192" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">desarrollado</text><line x1="160" y1="90" x2="193" y2="90" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="198.4,90 192.9,92.4 192.9,87.6" fill="var(--tc,var(--accent))"/><line x1="160" y1="110" x2="212.2" y2="110" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="217.6,110 212.1,112.4 212.1,107.6" fill="var(--tc,var(--accent))"/><line x1="160" y1="130" x2="212.2" y2="130" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="217.6,130 212.1,132.4 212.1,127.6" fill="var(--tc,var(--accent))"/><line x1="160" y1="150" x2="193" y2="150" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="198.4,150 192.9,152.4 192.9,147.6" fill="var(--tc,var(--accent))"/><text x="24" y="214" fill="var(--tc,var(--accent))" font-size="13" text-anchor="start" font-weight="700" opacity="1">q = ṁ·c_p·(T_sal − T_ent)</text></svg><figcaption>En un conducto el perfil se desarrolla tras una longitud de entrada y el balance usa la temperatura media entre entrada y salida.</figcaption></figure><figure class="ill"><div class="ill-t">Valores de referencia del número de Nusselt</div><svg viewBox="0 0 560 262" role="img" aria-label="Nusselt en tubo" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="50" width="260" height="34" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.6" opacity="0.08"/><text x="36" y="72" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">Laminar, T_p cte</text><text x="274" y="72" fill="var(--c5,#c43d63)" font-size="13" text-anchor="end" font-weight="700" opacity="1">Nu = 3,66</text><rect x="24" y="94" width="260" height="34" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="0.08"/><text x="36" y="116" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">Laminar, q″ cte</text><text x="274" y="116" fill="var(--tc,var(--accent))" font-size="13" text-anchor="end" font-weight="700" opacity="1">Nu = 4,36</text><rect x="24" y="138" width="260" height="34" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="0.08"/><text x="36" y="160" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="500" opacity="1">Turbulento</text><text x="274" y="160" fill="var(--c6,#2c8a52)" font-size="13" text-anchor="end" font-weight="700" opacity="1">Dittus–Boelter:</text><text x="24" y="206" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="600" opacity="1">Nu = 0,023·Re^0,8·Pr^n   (n = 0,4 calentando · 0,3 enfriando)</text></svg><figcaption>En régimen laminar desarrollado Nu es una constante; en turbulento depende de Re y Pr según la correlación de Dittus–Boelter.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">D_h</td><td>diámetro hidráulico</td><td class="u">4A_c/P</td></tr><tr><td class="sym">v_m</td><td>velocidad media</td><td class="u">m/s</td></tr><tr><td class="sym">T_m</td><td>temperatura media de mezcla</td><td class="u">°C</td></tr><tr><td class="sym">L_h, L_t</td><td>longitudes de entrada</td><td class="u">hidrodinámica y térmica</td></tr><tr><td class="sym">Gz</td><td>número de Graetz</td><td class="u">Re·Pr·D_h/x</td></tr><tr><td class="sym">f</td><td>factor de fricción</td><td class="u">64/Re laminar</td></tr><tr><td class="sym">ΔT_lm</td><td>diferencia media logarítmica</td><td class="u">°C</td></tr><tr><td class="sym">ṁ</td><td>caudal másico</td><td class="u">kg/s</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - flujo interno: regimen, entrada y temperatura de salida</p><div data-sim="tubo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Flujo interno: el fluido se calienta mientras avanza</p><p>En un tubo, a diferencia de en una placa, el fluido está confinado y su temperatura <b>cambia a lo largo del tubo</b>: se usa la temperatura media (de mezcla) \(T_m(x)\), y el calor total sale de un balance de energía, \(\dot Q=\dot m\,c_p(T_{sal}-T_{ent})\). Luego se relaciona con la pared: \(\dot Q=hA_s\Delta T\), con \(\Delta T\) igual a \(T_s-T_m\) (constante si el flujo de calor es uniforme) o a la media logarítmica (si \(T_s\) es constante). Con los dos balances igualados se despeja lo que falte: longitud, temperatura de salida o caudal.</p><p class="ft">Laminar o turbulento, y la región de entrada</p><p>Primero \(Re=\dfrac{v_mD}{\nu}\): bajo 2300, laminar; sobre 10⁴, turbulento. En <b>laminar</b> y totalmente desarrollado, \(Nu\) es una constante: \(4{,}36\) (flujo de calor uniforme) o \(3{,}66\) (\(T_s\) constante), y \(f=64/Re\); \(h=Nu\,k/D\) no depende de la velocidad. En la <b>entrada</b> el perfil se está formando y \(h\) es mayor (longitudes de entrada \(L_h\approx0{,}05ReD\), \(L_t\approx0{,}05RePrD\)): se usan Hausen o Sieder–Tate. En <b>turbulento</b>, Dittus–Boelter \(Nu=0{,}023Re^{0{,}8}Pr^{n}\) (\(n=0{,}4\) calentando; 0,3 enfriando) o la más precisa de Gnielinski. Con Dittus–Boelter, doblar la velocidad aumenta \(h\) en un 74 % (\(2^{0{,}8}\)).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Flujo interno: el fluido se calienta mientras avanza</p><p class="lede">En un tubo, a diferencia de en una placa, el fluido está confinado y su temperatura <b>cambia a lo largo del tubo</b>: se usa la temperatura media (de mezcla) \(T_m(x)\), y el calor total sale de un balance de energía, \(\dot Q=\dot m\,c_p(T_{sal}-T_{ent})\). Luego se relaciona con la pared: \(\dot Q=hA_s\Delta T\), con \(\Delta T\) igual a \(T_s-T_m\) (constante si el flujo de calor es uniforme) o a la media logarítmica (si \(T_s\) es constante). Con los dos balances igualados se despeja lo que falte: longitud, temperatura de salida o caudal.</p><p class="ft">Laminar o turbulento, y la región de entrada</p><p>Primero \(Re=\dfrac{v_mD}{\nu}\): bajo 2300, laminar; sobre 10⁴, turbulento. En <b>laminar</b> y totalmente desarrollado, \(Nu\) es una constante: \(4{,}36\) (flujo de calor uniforme) o \(3{,}66\) (\(T_s\) constante), y \(f=64/Re\); \(h=Nu\,k/D\) no depende de la velocidad. En la <b>entrada</b> el perfil se está formando y \(h\) es mayor (longitudes de entrada \(L_h\approx0{,}05ReD\), \(L_t\approx0{,}05RePrD\)): se usan Hausen o Sieder–Tate. En <b>turbulento</b>, Dittus–Boelter \(Nu=0{,}023Re^{0{,}8}Pr^{n}\) (\(n=0{,}4\) calentando; 0,3 enfriando) o la más precisa de Gnielinski. Con Dittus–Boelter, doblar la velocidad aumenta \(h\) en un 74 % (\(2^{0{,}8}\)).</p>
 <figure class="fig"><p class="ft">Flujo en el interior de un tubo</p><div data-sim="tubo"></div><figcaption>Cambia el caudal y observa el cambio de régimen y la evolución de la temperatura media.</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Flujo en tubería: laminar o turbulento</h4>
+<h4><span class="hn">1</span>Flujo en tubería: laminar o turbulento</h4>
 <div class="box key deepnote"><b>Idea clave.</b> en una tubería, el régimen depende del número de Reynolds basado en el diámetro. Por debajo de unos 2300, es laminar; por encima de unos 4000, es turbulento.</div>
 <div class="eqd">\[\mathrm{Nu}_D=3{,}66\quad\text{(laminar, temperatura de pared constante)}\]</div>
 <div class="eqd">\[\mathrm{Nu}_D=0{,}023\,\mathrm{Re}_D^{4/5}\mathrm{Pr}^{n}\quad\text{(Dittus-Boelter, turbulento)}\]</div>

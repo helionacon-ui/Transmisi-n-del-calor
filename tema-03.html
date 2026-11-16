@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">Conducción · Tema 3</p><h2 id="t3">Conducción unidimensional permanente y aletas</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> resolver paredes planas, cilindros y esferas con la analogía eléctrica, aplicar el concepto de radio crítico y calcular aletas con su eficiencia y su efectividad.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> resolver paredes planas, cilindros y esferas con la analogía eléctrica, aplicar el concepto de radio crítico y calcular aletas con su eficiencia y su efectividad.</p><ul>
 <li>En régimen permanente y 1D, el calor que atraviesa capas en serie es el <b>mismo</b> en todas. Eso permite usar la <b>analogía eléctrica</b>: \(\dot Q=\Delta T/\sum R\).</li>
 <li>Cada capa es una resistencia; las convecciones de los extremos también. En paralelo (capas laterales) se combinan como resistencias eléctricas.</li>
 <li>El <b>radio crítico</b> es la trampa clásica del aislamiento de tubos: por debajo de él, <b>añadir aislante aumenta</b> el calor perdido, porque el área exterior crece más deprisa de lo que crece la resistencia de conducción.</li>
@@ -57,16 +97,16 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El calor atraviesa capas como la corriente atraviesa resistencias</div><svg viewBox="0 0 560 262" role="img" aria-label="Pared plana y resistencias" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="60" y="60" width="40" height="100" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2.4" opacity="0.2"/><rect x="100" y="60" width="50" height="100" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="0.2"/><text x="80" y="176" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">1</text><text x="125" y="176" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">2</text><line x1="20" y1="110" x2="47.9" y2="110" stroke="var(--warn,#b8730c)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="56,110 47.8,113.7 47.8,106.3" fill="var(--warn,#b8730c)"/><line x1="154" y1="110" x2="191.9" y2="110" stroke="var(--warn,#b8730c)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="200,110 191.8,113.7 191.8,106.3" fill="var(--warn,#b8730c)"/><text x="24" y="210" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">R_cond = L/(k·A)   ·   R_conv = 1/(h·A)</text><text x="230" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">En serie las</text><text x="230" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">resistencias se suman:</text><text x="230" y="100" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">q = ΔT / ΣR</text></svg><figcaption>Cada capa y cada superficie con convección aportan una resistencia térmica; el flujo es la diferencia total de temperaturas dividida entre su suma.</figcaption></figure><figure class="ill"><div class="ill-t">Una aleta extiende la superficie de intercambio</div><svg viewBox="0 0 560 262" role="img" aria-label="Aleta" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="100" width="30" height="60" rx="0" fill="var(--muted)" stroke="var(--fg)" stroke-width="2" opacity="0.5"/><rect x="54" y="116" width="190" height="28" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="0.18"/><line x1="70" y1="112" x2="70" y2="87.4" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="70,82 72.4,87.5 67.6,87.5" fill="var(--c6,#2c8a52)"/><line x1="108" y1="112" x2="108" y2="87.4" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="108,82 110.4,87.5 105.6,87.5" fill="var(--c6,#2c8a52)"/><line x1="146" y1="112" x2="146" y2="87.4" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="146,82 148.4,87.5 143.6,87.5" fill="var(--c6,#2c8a52)"/><line x1="184" y1="112" x2="184" y2="87.4" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="184,82 186.4,87.5 181.6,87.5" fill="var(--c6,#2c8a52)"/><line x1="222" y1="112" x2="222" y2="87.4" stroke="var(--c6,#2c8a52)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="222,82 224.4,87.5 219.6,87.5" fill="var(--c6,#2c8a52)"/><text x="38" y="170" fill="var(--muted)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">base</text><text x="230" y="164" fill="var(--muted)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">punta</text><text x="24" y="206" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">η_a = tanh(mL)/(mL)    m = √(h·P/(k·A_c))</text></svg><figcaption>Su temperatura baja desde la base hacia la punta, por eso no todo su área es igual de eficaz: de ahí la eficiencia de aleta.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">9 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">R_cond</td><td>resistencia de conducción</td><td class="u">°C/W</td></tr><tr><td class="sym">R_conv</td><td>resistencia de convección</td><td class="u">1/(hA), °C/W</td></tr><tr><td class="sym">r_cr</td><td>radio crítico</td><td class="u">k/h (cilindro), 2k/h (esfera)</td></tr><tr><td class="sym">m</td><td>parámetro de la aleta</td><td class="u">√(hp/kA_c), 1/m</td></tr><tr><td class="sym">p</td><td>perímetro de la aleta</td><td class="u">m</td></tr><tr><td class="sym">A_c</td><td>sección transversal</td><td class="u">m²</td></tr><tr><td class="sym">η_f</td><td>eficiencia de la aleta</td><td class="u">tanh(mL_c)/(mL_c)</td></tr><tr><td class="sym">ε_f</td><td>efectividad de la aleta</td><td class="u">> 2 para compensar</td></tr><tr><td class="sym">η_0</td><td>eficiencia del conjunto</td><td class="u">aletas y pared</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - pared multicapa y analogia electrica</p><div data-sim="pared"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Resistencias térmicas: la ley de Ohm del calor</p><p>En régimen permanente y unidimensional, el calor es como una corriente: \(\dot Q=\dfrac{\Delta T}{R_{total}}\). Cada capa es una resistencia: <b>pared plana</b> \(R=\dfrac{L}{kA}\); <b>cilindro</b> \(R=\dfrac{\ln(r_e/r_i)}{2\pi kL}\); <b>esfera</b> \(R=\dfrac{1/r_i-1/r_e}{4\pi k}\); <b>convección</b> \(R=\dfrac1{hA}\). Las capas «en serie» se suman; si el calor tiene dos caminos para la misma diferencia de temperatura (convección y radiación sobre la misma superficie), van «en paralelo». Después, el flujo común permite calcular cada temperatura intermedia: \(T_i=T_{i-1}-\dot QR_i\).</p><p class="ft">Radio crítico y aletas</p><p>Aislar un tubo puede, paradójicamente, <b>aumentar</b> las pérdidas: al añadir aislante crece la superficie de convección. Hay un radio crítico \(r_{cr}=k/h\) (cilindro) o \(2k/h\) (esfera): si el radio exterior es menor que él, poner aislante empeora hasta que se supera \(r_{cr}\). Es relevante en cables y tuberías finas.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Resistencias térmicas: la ley de Ohm del calor</p><p class="lede">En régimen permanente y unidimensional, el calor es como una corriente: \(\dot Q=\dfrac{\Delta T}{R_{total}}\). Cada capa es una resistencia: <b>pared plana</b> \(R=\dfrac{L}{kA}\); <b>cilindro</b> \(R=\dfrac{\ln(r_e/r_i)}{2\pi kL}\); <b>esfera</b> \(R=\dfrac{1/r_i-1/r_e}{4\pi k}\); <b>convección</b> \(R=\dfrac1{hA}\). Las capas «en serie» se suman; si el calor tiene dos caminos para la misma diferencia de temperatura (convección y radiación sobre la misma superficie), van «en paralelo». Después, el flujo común permite calcular cada temperatura intermedia: \(T_i=T_{i-1}-\dot QR_i\).</p><p class="ft">Radio crítico y aletas</p><p>Aislar un tubo puede, paradójicamente, <b>aumentar</b> las pérdidas: al añadir aislante crece la superficie de convección. Hay un radio crítico \(r_{cr}=k/h\) (cilindro) o \(2k/h\) (esfera): si el radio exterior es menor que él, poner aislante empeora hasta que se supera \(r_{cr}\). Es relevante en cables y tuberías finas.</p>
 <p>Las <b>aletas</b> aumentan la superficie de intercambio. La temperatura obedece \(\dfrac{d^2\theta}{dx^2}=m^2\theta\) con \(m=\sqrt{hp/(kA_c)}\); para una aleta con extremo (casi) adiabático, \(\dot Q=\sqrt{hpkA_c}\,\theta_b\tanh(mL_c)\) con \(L_c=L+A_c/p\), y la <b>eficiencia</b> \(\eta_f=\dfrac{\tanh mL_c}{mL_c}\). Una aleta es útil si la efectividad \(\varepsilon_f\) es mayor que ~2.</p>
 <figure class="fig"><p class="ft">Pared compuesta y aleta</p><div data-sim="pared"></div><figcaption>Cambia espesores y conductividades: el reparto de temperaturas es proporcional a las resistencias.</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t3-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Pared plana: analogía eléctrica</h4>
+<h4><span class="hn">1</span>Pared plana: analogía eléctrica</h4>
 <div class="box key deepnote"><b>Idea clave.</b> el flujo de calor en una pared es como una corriente, y la diferencia de temperaturas es como una tensión. Las resistencias térmicas se suman en serie.</div>
 <div class="eqd">\[q=\frac{\Delta T}{R_{t}}\qquad R_{cond}=\frac{L}{k\,A}\qquad R_{conv}=\frac{1}{h\,A}\]</div>
 <ul><li>En serie, las resistencias se suman. En paralelo, se suman sus inversas.</li><li>La resistencia de convección es la misma analogía que la resistencia de conducción.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Coeficiente global de transmisión U</summary><div class="inner"><div class="eqd">\[\frac{1}{UA}=\frac{1}{h_1A}+\sum\frac{L_i}{k_iA}+\frac{1}{h_2A}\]</div>
 <div class="box trap deepnote"><b>Cuidado.</b> El aislante es el elemento limitante: si una capa tiene resistencia alta, domina todo el conjunto.</div></div></details>
-<h4>2. Cilindro y esfera</h4>
+<h4><span class="hn">2</span>Cilindro y esfera</h4>
 <ul><li><b>Cilindro</b>: \(R_{cil}=\dfrac{\ln(r_2/r_1)}{2\pi kL}\). La área no es constante: se usa el logaritmo.</li><li><b>Esfera</b>: \(R_{esf}=\dfrac{1}{4\pi k}\left(\dfrac{1}{r_1}-\dfrac{1}{r_2}\right)\).</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> En un cilindro, añadir aislante puede <b>aumentar</b> la pérdida de calor en tubos pequeños. Existe un radio crítico.</div>
 </div><!--/deep--><h3 id="t3-formulas">Fórmulas que hay que saber localizar</h3>

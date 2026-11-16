@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">Conducción · Tema 1</p><h2 id="t1">Los tres mecanismos y el balance de energía</h2><div class="tags"><span class="tag">Conducción</span><span class="tag">Conducción</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> distinguir conducción, convección y radiación, saber con qué ley se calcula cada uno y plantear un balance de energía con los tres a la vez.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> distinguir conducción, convección y radiación, saber con qué ley se calcula cada uno y plantear un balance de energía con los tres a la vez.</p><ul>
 <li>La transmisión de calor estudia <b>a qué velocidad</b> se transfiere la energía por una diferencia de temperatura. La termodinámica dice cuánta energía hay; la transmisión de calor, cuánto tiempo tarda.</li>
 <li><b>Conducción:</b> transporte por contacto directo entre partículas, sin movimiento macroscópico. Es el único mecanismo dentro de un sólido opaco.</li>
 <li><b>Convección:</b> conducción más <b>arrastre por el movimiento</b> del fluido. Se llama <i>forzada</i> si el movimiento lo provoca un ventilador o una bomba, y <i>natural</i> (o libre) si lo provoca la propia diferencia de densidades.</li>
@@ -57,13 +97,13 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Tres formas de transmitir calor</div><svg viewBox="0 0 560 262" role="img" aria-label="Tres mecanismos" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="70" width="90" height="40" rx="0" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.12"/><line x1="30" y1="90" x2="99.9" y2="90" stroke="var(--c6,#2c8a52)" stroke-width="2.8" opacity="1" stroke-linecap="round"/><polygon points="108,90 99.8,93.7 99.8,86.3" fill="var(--c6,#2c8a52)"/><text x="69" y="128" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">conducción</text><rect x="130" y="70" width="10" height="70" rx="0" fill="var(--muted)" stroke="var(--fg)" stroke-width="2" opacity="0.5"/><path d="M146,84 q18,-12 36,0 t30,0" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M146,102 q18,-12 36,0 t30,0" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M146,120 q18,-12 36,0 t30,0" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="175" y="160" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">convección</text><circle cx="250" cy="90" r="14" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2.4" opacity="0.3"/><polyline points="268,90 268.5,90.9 269,91.8 269.5,92.4 270,92.9 270.5,93 271,92.9 271.5,92.4 272,91.8 272.5,90.9 273,90 273.5,89.1 274,88.2 274.5,87.6 275,87.1 275.5,87 276,87.1 276.5,87.6 277,88.2 277.5,89.1 278,90 278.5,90.9 279,91.8 279.5,92.4 280,92.9 280.5,93 281,92.9 281.5,92.4 282,91.8 282.5,90.9 283,90 283.5,89.1 284,88.2 284.5,87.6 285,87.1 285.5,87 286,87.1 286.5,87.6 287,88.2 287.5,89.1 288,90 288.5,90.9 289,91.8 289.5,92.4 290,92.9 290.5,93 291,92.9 291.5,92.4 292,91.8 292.5,90.9 293,90 293.5,89.1 294,88.2 294.5,87.6 295,87.1 295.5,87 296,87.1 296.5,87.6 297,88.2 297.5,89.1 298,90" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><polyline points="262.7,77.3 263.7,77.6 264.7,77.8 265.5,77.9 266.2,77.9 266.6,77.6 266.9,77.2 266.9,76.5 266.8,75.7 266.6,74.7 266.3,73.7 266,72.7 265.7,71.8 265.6,71 265.7,70.3 265.9,69.8 266.4,69.6 267,69.5 267.8,69.7 268.8,69.9 269.8,70.2 270.8,70.5 271.8,70.7 272.6,70.9 273.2,70.8 273.7,70.6 273.9,70.1 274,69.4 273.9,68.6 273.6,67.7 273.3,66.7 273,65.7 272.8,64.7 272.7,63.9 272.7,63.2 273,62.8 273.4,62.5 274.1,62.5 274.9,62.6 275.9,62.8 276.9,63.1 277.9,63.4 278.8,63.7 279.6,63.8 280.3,63.7 280.8,63.5 281,63 281.1,62.4 280.9,61.5 280.7,60.6 280.4,59.6 280.1,58.6 279.9,57.6 279.8,56.8 279.8,56.2 280.1,55.7 280.5,55.5 281.2,55.4 282,55.5 282.9,55.8 283.9,56.1" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><polyline points="262.7,102.7 262.4,103.7 262.2,104.7 262.1,105.5 262.1,106.2 262.4,106.6 262.8,106.9 263.5,106.9 264.3,106.8 265.3,106.6 266.3,106.3 267.3,106 268.2,105.7 269,105.6 269.7,105.7 270.2,105.9 270.4,106.4 270.5,107 270.3,107.8 270.1,108.8 269.8,109.8 269.5,110.8 269.3,111.8 269.1,112.6 269.2,113.2 269.4,113.7 269.9,113.9 270.6,114 271.4,113.9 272.3,113.6 273.3,113.3 274.3,113 275.3,112.8 276.1,112.7 276.8,112.7 277.2,113 277.5,113.4 277.5,114.1 277.4,114.9 277.2,115.9 276.9,116.9 276.6,117.9 276.3,118.8 276.2,119.6 276.3,120.3 276.5,120.8 277,121 277.6,121.1 278.5,120.9 279.4,120.7 280.4,120.4 281.4,120.1 282.4,119.9 283.2,119.8 283.8,119.8 284.3,120.1 284.5,120.5 284.6,121.2 284.5,122 284.2,122.9 283.9,123.9" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="260" y="160" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">radiación</text><text x="24" y="206" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="600" opacity="1">q = −k·A·dT/dx  ·  q = h·A·ΔT  ·  q = ε·σ·A·(T⁴−T∞⁴)</text></svg><figcaption>Por contacto en sólidos o fluidos en reposo (conducción), por movimiento del fluido (convección) y por ondas electromagnéticas (radiación).</figcaption></figure><figure class="ill"><div class="ill-t">Todo problema empieza con un balance</div><svg viewBox="0 0 560 262" role="img" aria-label="Balance de energía" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="100" y="70" width="100" height="80" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="0.1"/><text x="150" y="116" fill="var(--tc,var(--accent))" font-size="14" text-anchor="middle" font-weight="700" opacity="1">V.C.</text><line x1="40" y1="110" x2="89" y2="110" stroke="var(--c6,#2c8a52)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="98,110 88.9,114.1 88.9,105.9" fill="var(--c6,#2c8a52)"/><text x="60" y="100" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">q_in</text><line x1="202" y1="110" x2="251" y2="110" stroke="var(--c5,#c43d63)" stroke-width="3" opacity="1" stroke-linecap="round"/><polygon points="260,110 250.9,114.1 250.9,105.9" fill="var(--c5,#c43d63)"/><text x="240" y="100" fill="var(--c5,#c43d63)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">q_out</text><line x1="150" y1="40" x2="150" y2="59.9" stroke="var(--warn,#b8730c)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><polygon points="150,68 146.3,59.8 153.7,59.8" fill="var(--warn,#b8730c)"/><text x="160" y="48" fill="var(--warn,#b8730c)" font-size="12" text-anchor="start" font-weight="700" opacity="1">q_gen</text><text x="24" y="190" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">E_in + E_gen − E_out = dE_alm/dt</text><text x="24" y="214" fill="var(--fg)" font-size="12" text-anchor="start" font-weight="600" opacity="1">régimen permanente: dE_alm/dt = 0</text></svg><figcaption>Lo que entra, más lo que se genera, menos lo que sale, es lo que se acumula; en régimen permanente la acumulación es nula.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">q̇</td><td>flujo de calor</td><td class="u">W/m²</td></tr><tr><td class="sym">Q̇</td><td>potencia térmica</td><td class="u">W</td></tr><tr><td class="sym">k</td><td>conductividad térmica</td><td class="u">W/m·K</td></tr><tr><td class="sym">h</td><td>coeficiente de convección</td><td class="u">W/m²·K</td></tr><tr><td class="sym">ε</td><td>emisividad</td><td class="u">0 ≤ ε ≤ 1</td></tr><tr><td class="sym">σ</td><td>constante de Stefan-Boltzmann</td><td class="u">5,67·10⁻⁸ W/m²·K⁴</td></tr><tr><td class="sym">h_r</td><td>coef. de radiación linealizado</td><td class="u">W/m²·K</td></tr><tr><td class="sym">T_alr</td><td>temperatura de los alrededores</td><td class="u">K</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - conveccion y radiacion desde una superficie</p><div data-sim="mecanismos"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Tres formas de mover calor, tres leyes</p><p>El calor pasa de caliente a frío por tres mecanismos distintos y cada uno tiene su ley: <b>conducción</b> (por el material, sin que este se mueva): Fourier, \(\dot q=-k\,dT/dx\); <b>convección</b> (con el movimiento de un fluido): Newton, \(\dot Q=hA(T_s-T_\infty)\); <b>radiación</b> (ondas electromagnéticas, sin necesidad de medio): Stefan-Boltzmann, \(\dot Q=\varepsilon\sigma A(T_s^4-T_{alr}^4)\). Todas tienen la misma forma «diferencia de temperatura partida por una resistencia», y por eso en el tema 3 se tratan como resistencias eléctricas. Atención: <b>\(h\) no es una propiedad del material</b>: depende de la geometría, del fluido y de la velocidad.</p><p class="ft">El balance de energía: lo primero que se escribe</p><p>Todos los problemas empiezan igual: dibuja el sistema, escribe qué entra, qué sale y qué se acumula, \(\dot E_{ent}-\dot E_{sal}+\dot E_{gen}=\dfrac{dE}{dt}\). En una <b>superficie</b> no hay masa ni generación: lo que llega por conducción se va por convección y radiación. Si además el régimen es <b>permanente</b>, \(dE/dt=0\) y el problema se reduce a igualar flujos. Por último, la radiación se puede linealizar con \(h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)\) para sumarla a \(h\): \(h_{total}=h_c+h_r\) (¡temperaturas en kelvin!).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Tres formas de mover calor, tres leyes</p><p class="lede">El calor pasa de caliente a frío por tres mecanismos distintos y cada uno tiene su ley: <b>conducción</b> (por el material, sin que este se mueva): Fourier, \(\dot q=-k\,dT/dx\); <b>convección</b> (con el movimiento de un fluido): Newton, \(\dot Q=hA(T_s-T_\infty)\); <b>radiación</b> (ondas electromagnéticas, sin necesidad de medio): Stefan-Boltzmann, \(\dot Q=\varepsilon\sigma A(T_s^4-T_{alr}^4)\). Todas tienen la misma forma «diferencia de temperatura partida por una resistencia», y por eso en el tema 3 se tratan como resistencias eléctricas. Atención: <b>\(h\) no es una propiedad del material</b>: depende de la geometría, del fluido y de la velocidad.</p><p class="ft">El balance de energía: lo primero que se escribe</p><p>Todos los problemas empiezan igual: dibuja el sistema, escribe qué entra, qué sale y qué se acumula, \(\dot E_{ent}-\dot E_{sal}+\dot E_{gen}=\dfrac{dE}{dt}\). En una <b>superficie</b> no hay masa ni generación: lo que llega por conducción se va por convección y radiación. Si además el régimen es <b>permanente</b>, \(dE/dt=0\) y el problema se reduce a igualar flujos. Por último, la radiación se puede linealizar con \(h_r=\varepsilon\sigma(T_s+T_{alr})(T_s^2+T_{alr}^2)\) para sumarla a \(h\): \(h_{total}=h_c+h_r\) (¡temperaturas en kelvin!).</p>
 <figure class="fig"><p class="ft">Los tres mecanismos</p><div data-sim="mecanismos"></div><figcaption>Cambia las temperaturas y el coeficiente h: compara los tres flujos de calor.</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Los tres mecanismos</h4>
+<h4><span class="hn">1</span>Los tres mecanismos</h4>
 <ul><li><b>Conducción:</b> transporte de energía por contacto, dentro de un sólido o fluido en reposo. Ley de Fourier.</li><li><b>Convección:</b> transporte por el movimiento del fluido sobre una superficie. Ley de Newton del enfriamiento.</li><li><b>Radiación:</b> emisión de ondas electromagnéticas. No necesita medio material.</li></ul>
 <div class="eqd">\[q^{\prime\prime}=-k\nabla T\qquad q=h\,(T_s-T_\infty)\qquad q=\varepsilon\sigma T^4\]</div>
 <div class="box trap deepnote"><b>Cuidado.</b> La radiación no necesita medio: el calor del Sol llega a la Tierra por radiación, a través del vacío.</div>
-<h4>2. Balance de energía</h4>
+<h4><span class="hn">2</span>Balance de energía</h4>
 <div class="box key deepnote"><b>Idea clave.</b> la energía que entra en un volumen menos la que sale, más la que se genera, es igual a la variación de energía almacenada.</div>
 <div class="eqd">\[\dot E_{ent}-\dot E_{sal}+\dot E_{gen}=\dot E_{alm}\]</div>
 </div><!--/deep--><h3 id="t1-formulas">Fórmulas que hay que saber localizar</h3>

@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
 <div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Convección, radiación e intercambiadores · Tema 6</p><h2 id="t6">Introducción a la convección: capa límite y números adimensionales</h2><div class="tags"><span class="tag">Convección, radiación e intercambiadores</span><span class="tag">Convección</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender la capa límite hidrodinámica y la térmica, manejar los números de Reynolds, Prandtl y Nusselt y saber de dónde salen las correlaciones.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> entender la capa límite hidrodinámica y la térmica, manejar los números de Reynolds, Prandtl y Nusselt y saber de dónde salen las correlaciones.</p><ul>
 <li>Junto a una pared, la velocidad pasa de cero (no deslizamiento) al valor libre en un espesor muy pequeño: la <b>capa límite hidrodinámica</b> \(\delta\).</li>
 <li>Lo mismo ocurre con la temperatura: la <b>capa límite térmica</b> \(\delta_t\). Todo el salto térmico está ahí dentro.</li>
 <li><b>En la pared el fluido está quieto</b>, así que allí el calor se transmite por <b>conducción pura</b>. De ahí sale la definición de \(h\): \(h=-k_f(\partial T/\partial y)_{y=0}/(T_s-T_\infty)\).</li>
@@ -58,9 +98,9 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">La zona donde el fluido «siente» la pared</div><svg viewBox="0 0 560 262" role="img" aria-label="Capa límite" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="30" y1="170" x2="270" y2="170" stroke="var(--fg)" stroke-width="3" opacity="1" stroke-linecap="round"/><path d="M40,170 L43.8,163.8 L47.7,161.2 L51.5,159.3 L55.3,157.6 L59.2,156.1 L63,154.8 L66.8,153.6 L70.7,152.5 L74.5,151.4 L78.3,150.4 L82.2,149.4 L86,148.5 L89.8,147.7 L93.7,146.8 L97.5,146 L101.3,145.2 L105.2,144.5 L109,143.7 L112.8,143 L116.7,142.3 L120.5,141.6 L124.3,140.9 L128.2,140.3 L132,139.6 L135.8,139 L139.7,138.4 L143.5,137.8 L147.3,137.2 L151.2,136.6 L155,136.1 L158.8,135.5 L162.7,134.9 L166.5,134.4 L170.3,133.9 L174.2,133.3 L178,132.8 L181.8,132.3 L185.7,131.8 L189.5,131.3 L193.3,130.8 L197.2,130.3 L201,129.8 L204.8,129.4 L208.7,128.9 L212.5,128.4 L216.3,128 L220.2,127.5 L224,127.1 L227.8,126.6 L231.7,126.2 L235.5,125.7 L239.3,125.3 L243.2,124.9 L247,124.5 L250.8,124 L254.7,123.6 L258.5,123.2 L262.3,122.8 L266.2,122.4 L270,122" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="2.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="70" y1="165.7" x2="84.2" y2="165.7" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="88.7,165.7 84.1,167.7 84.1,163.6" fill="var(--tc,var(--accent))"/><line x1="70" y1="161.3" x2="93.3" y2="161.3" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="97.8,161.3 93.2,163.4 93.2,159.3" fill="var(--tc,var(--accent))"/><line x1="70" y1="157" x2="99.4" y2="157" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="103.9,157 99.3,159 99.3,155" fill="var(--tc,var(--accent))"/><line x1="70" y1="152.7" x2="101.5" y2="152.7" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="106,152.7 101.4,154.7 101.4,150.6" fill="var(--tc,var(--accent))"/><line x1="140" y1="162.1" x2="154.2" y2="162.1" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="158.7,162.1 154.1,164.1 154.1,160" fill="var(--tc,var(--accent))"/><line x1="140" y1="154.2" x2="163.3" y2="154.2" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="167.8,154.2 163.2,156.2 163.2,152.1" fill="var(--tc,var(--accent))"/><line x1="140" y1="146.3" x2="169.4" y2="146.3" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="173.9,146.3 169.3,148.3 169.3,144.2" fill="var(--tc,var(--accent))"/><line x1="140" y1="138.3" x2="171.5" y2="138.3" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="176,138.3 171.4,140.4 171.4,136.3" fill="var(--tc,var(--accent))"/><line x1="220" y1="159.4" x2="234.2" y2="159.4" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="238.7,159.4 234.1,161.4 234.1,157.3" fill="var(--tc,var(--accent))"/><line x1="220" y1="148.8" x2="243.3" y2="148.8" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="247.8,148.8 243.2,150.8 243.2,146.7" fill="var(--tc,var(--accent))"/><line x1="220" y1="138.2" x2="249.4" y2="138.2" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="253.9,138.2 249.3,140.2 249.3,136.1" fill="var(--tc,var(--accent))"/><line x1="220" y1="127.5" x2="251.5" y2="127.5" stroke="var(--tc,var(--accent))" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="256,127.5 251.4,129.6 251.4,125.5" fill="var(--tc,var(--accent))"/><text x="260" y="100" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="end" font-weight="700" opacity="1">δ(x)</text><text x="40" y="190" fill="var(--muted)" font-size="10.5" text-anchor="start" font-weight="700" opacity="1">borde de ataque</text><text x="300" y="56" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">Dentro de δ la</text><text x="300" y="78" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">velocidad pasa de 0</text><text x="300" y="100" fill="var(--fg)" font-size="13.5" text-anchor="start" opacity="1">al valor libre U∞.</text><text x="300" y="133" fill="var(--tc,var(--accent))" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Crece con √x (lam.).</text></svg><figcaption>La capa límite hidrodinámica crece a lo largo de la placa; en ella se concentra el gradiente de velocidad y el intercambio de calor.</figcaption></figure><figure class="ill"><div class="ill-t">Cuatro números que ordenan la convección</div><svg viewBox="0 0 560 262" role="img" aria-label="Números adimensionales" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="44" width="64" height="34" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.12"/><text x="56" y="67" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Re</text><rect x="96" y="44" width="208" height="34" rx="8" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="1.4" opacity="0.05"/><text x="106" y="66" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="500" opacity="1">inercia / viscosidad</text><rect x="24" y="88" width="64" height="34" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.12"/><text x="56" y="111" fill="var(--c5,#c43d63)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Pr</text><rect x="96" y="88" width="208" height="34" rx="8" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.4" opacity="0.05"/><text x="106" y="110" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="500" opacity="1">difusión de cantidad de mov. / calor</text><rect x="24" y="132" width="64" height="34" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="0.12"/><text x="56" y="155" fill="var(--c6,#2c8a52)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Nu</text><rect x="96" y="132" width="208" height="34" rx="8" fill="var(--c6,#2c8a52)" stroke="var(--c6,#2c8a52)" stroke-width="1.4" opacity="0.05"/><text x="106" y="154" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="500" opacity="1">convección / conducción</text><rect x="24" y="176" width="64" height="34" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.12"/><text x="56" y="199" fill="var(--warn,#b8730c)" font-size="14.5" text-anchor="middle" font-weight="700" opacity="1">Gr</text><rect x="96" y="176" width="208" height="34" rx="8" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.4" opacity="0.05"/><text x="106" y="198" fill="var(--fg)" font-size="11.5" text-anchor="start" font-weight="500" opacity="1">flotación / viscosidad²</text></svg><figcaption>Cada grupo adimensional compara dos efectos físicos; las correlaciones de convección se expresan como Nu = f(Re, Pr) o f(Gr, Pr).</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">δ</td><td>espesor de capa límite hidrodinámica</td><td class="u">m</td></tr><tr><td class="sym">δ_t</td><td>espesor de capa límite térmica</td><td class="u">m</td></tr><tr><td class="sym">Re</td><td>número de Reynolds</td><td class="u">U L/ν</td></tr><tr><td class="sym">Pr</td><td>número de Prandtl</td><td class="u">ν/α, propiedad del fluido</td></tr><tr><td class="sym">Nu</td><td>número de Nusselt</td><td class="u">hL/k_f (k del fluido)</td></tr><tr><td class="sym">ν</td><td>viscosidad cinemática</td><td class="u">m²/s</td></tr><tr><td class="sym">τ_s</td><td>esfuerzo cortante en la pared</td><td class="u">N/m²</td></tr><tr><td class="sym">T_f</td><td>temperatura de película</td><td class="u">(T_s+T∞)/2</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - capa limite hidrodinamica y termica</p><div data-sim="capalimite"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano con el formulario.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué existe la capa límite</p><p>Cuando un fluido pasa junto a una pared, las partículas pegadas a ella tienen velocidad cero y la temperatura de la pared (condición de no deslizamiento). Entre la pared y la corriente libre hay una capa delgada donde la velocidad y la temperatura cambian: la <b>capa límite</b> (hidrodinámica, de espesor \(\delta\), y térmica, de espesor \(\delta_t\)). Todo el calor que sale de la pared pasa primero por una fina capa de fluido en reposo, por conducción: \(\dot q=-k_f\left.\dfrac{\partial T}{\partial y}\right|_{y=0}\). Igualando a la ley de Newton se obtiene la definición de \(h=\dfrac{-k_f(\partial T/\partial y)_{y=0}}{T_s-T_\infty}\): <b>h es el gradiente de temperatura en la pared, medido en unidades prácticas</b>.</p><p class="ft">Los números adimensionales y qué compara cada uno</p><p>El análisis dimensional reduce la convección a unos pocos números. <b>Reynolds</b> \(Re=\dfrac{U L}{\nu}\): inercia frente a viscosidad, decide laminar o turbulento (en placa, \(Re_{cr}\approx5\cdot10^5\); en tubo, 2300). <b>Prandtl</b> \(Pr=\dfrac\nu\alpha\): difusión de cantidad de movimiento frente a la térmica (aire ≈ 0,7; agua ≈ 7; aceites &gt; 100) y fija la relación \(\delta/\delta_t\approx Pr^{1/3}\). <b>Nusselt</b> \(Nu=\dfrac{hL}{k_f}\): el \(h\) adimensional (cuántas veces mejor que conducir). <b>Grashof</b> \(Gr=\dfrac{g\beta\Delta TL^3}{\nu^2}\) y <b>Rayleigh</b> \(Ra=Gr\,Pr\): para convección natural. Receta: calcular \(Re\) (o \(Ra\)), elegir la correlación \(Nu=f(Re,Pr)\) y despejar \(h=Nu\,k_f/L\), con propiedades a la <b>temperatura de película</b> \(T_f=(T_s+T_\infty)/2\).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué existe la capa límite</p><p class="lede">Cuando un fluido pasa junto a una pared, las partículas pegadas a ella tienen velocidad cero y la temperatura de la pared (condición de no deslizamiento). Entre la pared y la corriente libre hay una capa delgada donde la velocidad y la temperatura cambian: la <b>capa límite</b> (hidrodinámica, de espesor \(\delta\), y térmica, de espesor \(\delta_t\)). Todo el calor que sale de la pared pasa primero por una fina capa de fluido en reposo, por conducción: \(\dot q=-k_f\left.\dfrac{\partial T}{\partial y}\right|_{y=0}\). Igualando a la ley de Newton se obtiene la definición de \(h=\dfrac{-k_f(\partial T/\partial y)_{y=0}}{T_s-T_\infty}\): <b>h es el gradiente de temperatura en la pared, medido en unidades prácticas</b>.</p><p class="ft">Los números adimensionales y qué compara cada uno</p><p>El análisis dimensional reduce la convección a unos pocos números. <b>Reynolds</b> \(Re=\dfrac{U L}{\nu}\): inercia frente a viscosidad, decide laminar o turbulento (en placa, \(Re_{cr}\approx5\cdot10^5\); en tubo, 2300). <b>Prandtl</b> \(Pr=\dfrac\nu\alpha\): difusión de cantidad de movimiento frente a la térmica (aire ≈ 0,7; agua ≈ 7; aceites &gt; 100) y fija la relación \(\delta/\delta_t\approx Pr^{1/3}\). <b>Nusselt</b> \(Nu=\dfrac{hL}{k_f}\): el \(h\) adimensional (cuántas veces mejor que conducir). <b>Grashof</b> \(Gr=\dfrac{g\beta\Delta TL^3}{\nu^2}\) y <b>Rayleigh</b> \(Ra=Gr\,Pr\): para convección natural. Receta: calcular \(Re\) (o \(Ra\)), elegir la correlación \(Nu=f(Re,Pr)\) y despejar \(h=Nu\,k_f/L\), con propiedades a la <b>temperatura de película</b> \(T_f=(T_s+T_\infty)/2\).</p>
 <figure class="fig"><p class="ft">Capa límite</p><div data-sim="capalimite"></div><figcaption>Cambia el número de Prandtl: el espesor de la capa térmica se ajusta respecto al hidrodinámico.</figcaption></figure></div><!--/amp1--><!--deep--><h3 id="t6-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Capa límite</h4>
+<h4><span class="hn">1</span>Capa límite</h4>
 <div class="box key deepnote"><b>Idea clave.</b> cuando un fluido pasa sobre una superficie, la velocidad se anula en la pared (no deslizamiento). La zona cerca de la pared donde la velocidad cambia es la <b>capa límite</b>, y allí está el gradiente térmico.</div>
 <ul><li><b>Capa límite de velocidad</b> \(\delta\) y <b>capa límite térmica</b> \(\delta_t\). Su relación depende del número de Prandtl.</li><li>En la capa límite, el calor pasa por conducción, aunque el fluido se mueve.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Números adimensionales</summary><div class="inner"><ul><li><b>Reynolds</b> \(\mathrm{Re}=\rho VL/\mu\): inercia frente a viscosidad. Decide si la capa es laminar o turbulenta.</li><li><b>Prandtl</b> \(\mathrm{Pr}=\nu/\alpha\): capa de velocidad frente a capa térmica. Para aire, \(\mathrm{Pr}\approx0{,}7\).</li><li><b>Nusselt</b> \(\mathrm{Nu}=hL/k\): convección frente a conducción. Es la forma adimensional del coeficiente \(h\).</li></ul>
