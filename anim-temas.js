@@ -18,7 +18,7 @@ M.reg('tc-t2',M.curva({title:'Ecuación de la conducción: pared con generación
 
 /* T3 aleta */
 function ch(x){return (Math.exp(x)+Math.exp(-x))/2;}
-M.reg('tc-t3',M.curva({title:'Aletas: perfil de temperatura y eficiencia',H:560,dur:18,p:[0.3,4],ax:{xr:[0,1.05],yr:[0,1.1],xt:[0.5,1],yt:[0.5,1],xf:function(v){return v===1?'L':'L/2';},yd:1,xl:'x',yl:'θ/θ_{b}'},h:300,
+M.reg('tc-t4b',M.curva({title:'Aletas: perfil de temperatura y eficiencia',H:560,dur:18,p:[0.3,4],ax:{xr:[0,1.05],yr:[0,1.1],xt:[0.5,1],yt:[0.5,1],xf:function(v){return v===1?'L':'L/2';},yd:1,xl:'x',yl:'θ/θ_{b}'},h:300,
  curvas:[{f:function(x,mL){return x>1?NaN:ch(mL*(1-x))/ch(mL);},c:'m'}],
  extra:function(D,A,mL){for(var i=0;i<40;i++){var x=i/40,v=ch(mL*(1-x))/ch(mL);D.rect(A.X(x),A.Y(1.08),A.X(1/40)-A.X(0)+0.5,14,null,RG(C.bad,.15+0.75*v));}},
  read:function(mL){var tn=(Math.exp(2*mL)-1)/(Math.exp(2*mL)+1);return ['m·L = '+nf(mL,2)+'    m = √(hP/(kA_{c}))','eficiencia η = tanh(mL)/(mL) = '+nf(tn/mL*100,0)+' %'];},
@@ -89,4 +89,12 @@ M.reg('tc-t11',M.base({title:'Intercambiadores: flujo paralelo y contracorriente
   D.path(ph,C.bad,3);D.path(pc,C.f,3);if(n>0){D.head(ph[ph.length-1][0],ph[ph.length-1][1],0,C.bad,10);D.head(pc[pc.length-1][0],pc[pc.length-1][1],c?Math.PI:0,C.f,10);}
   D.text(c?'contracorriente':'flujo paralelo',W/2,118,{s:20,a:'center',c:C.m,bold:true});
   var Q=150-o[200][0];U.readout(D,['caliente: 150 → '+nf(o[200][0],1)+' °C    frío: 20 → '+nf(c?o[0][1]:o[200][1],1)+' °C','calor transferido = '+nf(Q,1)+' (unidades de C_{h})'],468);}));
+/* T3 pared compuesta: analogía eléctrica */
+M.reg('tc-t3',M.base({title:'Pared compuesta: resistencias térmicas en serie',H:600,dur:18,caps:[[6,'El calor atraviesa en serie la convección interior, el ladrillo, el aislante, el yeso y la convección exterior. Cada uno es una resistencia <i>R = L/(kA)</i> o <i>1/(hA)</i>.'],[12,'El flujo es <i>q = ΔT/ΣR</i>. En cada capa la temperatura cae en proporción a su resistencia: la caída mayor está en el aislante.'],[99,'Mueve «Prueba tú» para cambiar el espesor del aislante: con poco espesor el flujo se dispara; a partir de cierto valor engordarlo apenas mejora.']]},
+ function(D,t){var Li=lerp(0.005,0.10,U.pp(t,18)),Ti=20,To=0,Ly=[[0.15,0.7,'ladrillo',C.hl],[Li,0.035,'aislante',C.g],[0.015,0.25,'yeso',C.f]],R=[1/8];Ly.forEach(function(l){R.push(l[0]/l[1]);});R.push(1/25);var Rt=R.reduce(function(a,b){return a+b;},0),q=(Ti-To)/Rt;
+  var x0=120,S=1400,y0=110,h=260,x=x0;var T=Ti-q*R[0],pts=[[x0-60,y0+h-(Ti/22)*h],[x0,y0+h-(T/22)*h]];
+  Ly.forEach(function(l,i){var w=l[0]*S;D.rect(x,y0,w,h,l[3],RG(l[3],.18),1.4);D.text(l[2],x+w/2,y0+h+22,{s:13,a:'center',c:l[3]});x+=w;T-=q*R[i+1];pts.push([x,y0+h-(T/22)*h]);});
+  pts.push([x+60,y0+h-(To/22)*h]);D.path(pts,C.bad,3);pts.forEach(function(p,i){if(i>0&&i<pts.length-1)D.dot(p[0],p[1],5,C.bad);});
+  D.text('20 °C',x0-64,y0+h-(20/22)*h-10,{s:14,c:C.bad});D.text('0 °C',x+64,y0+h-6,{s:14,c:C.bad,a:'right'});D.text('aire interior',x0-60,y0-8,{s:13,c:C.mut});D.text('aire exterior',x+60,y0-8,{s:13,c:C.mut,a:'right'});
+  U.readout(D,['aislante: '+nf(Li*100,1)+' cm (k = 0,035 W/m·K)    ΣR = '+nf(Rt,2)+' m²K/W','q = ΔT/ΣR = '+nf(q,1)+' W/m²'],470);}));
 })();
