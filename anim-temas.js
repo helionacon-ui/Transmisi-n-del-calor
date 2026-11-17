@@ -97,4 +97,10 @@ M.reg('tc-t3',M.base({title:'Pared compuesta: resistencias térmicas en serie',H
   pts.push([x+60,y0+h-(To/22)*h]);D.path(pts,C.bad,3);pts.forEach(function(p,i){if(i>0&&i<pts.length-1)D.dot(p[0],p[1],5,C.bad);});
   D.text('20 °C',x0-64,y0+h-(20/22)*h-10,{s:14,c:C.bad});D.text('0 °C',x+64,y0+h-6,{s:14,c:C.bad,a:'right'});D.text('aire interior',x0-60,y0-8,{s:13,c:C.mut});D.text('aire exterior',x+60,y0-8,{s:13,c:C.mut,a:'right'});
   U.readout(D,['aislante: '+nf(Li*100,1)+' cm (k = 0,035 W/m·K)    ΣR = '+nf(Rt,2)+' m²K/W','q = ΔT/ΣR = '+nf(q,1)+' W/m²'],470);}));
+function effc(N,c){if(Math.abs(c-1)<1e-6)return N/(1+N);var e=Math.exp(-N*(1-c));return (1-e)/(1-c*e);}
+M.reg('tc-t11b',M.curva({title:'Intercambiadores: método ε–NTU',H:560,dur:18,p:[0,1],ax:{xr:[0,5],yr:[0,1.05],xt:[1,2,3,4,5],yt:[0.25,0.5,0.75,1],xd:0,yd:2,xl:'NTU = UA/C_{mín}',yl:'ε'},h:300,
+ curvas:[{f:function(N,c){return effc(N,c);},c:'m'}],
+ extra:function(D,A){U.plotf(D,A,function(N){return effc(N,0);},C.ok,1.4,0.6);D.text('C_{r} = 0',A.X(4.4),A.Y(0.99)-8,{s:13,c:C.ok});},
+ read:function(c){return ['contracorriente,  C_{r} = C_{mín}/C_{máx} = '+nf(c,2),'con NTU = 2:  ε = '+nf(effc(2,c),3)+'    q = ε·C_{mín}·(T_{c,e} − T_{f,e})'];},
+ caps:[[6,'La efectividad ε es el calor real dividido por el máximo posible, <i>C<sub>mín</sub>(T<sub>c,e</sub> − T<sub>f,e</sub>)</i>. Depende de NTU = UA/C<sub>mín</sub> y de C<sub>r</sub>.'],[12,'Al aumentar el área (NTU) la efectividad crece, pero cada vez menos: el último metro cuadrado aporta poco.'],[99,'Con C<sub>r</sub> = 0 (un fluido que cambia de fase) todas las configuraciones dan ε = 1 − e<sup>−NTU</sup>. Con C<sub>r</sub> = 1 es la más difícil de calentar.']]}));
 })();
